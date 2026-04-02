@@ -1,7 +1,6 @@
 export default function TrustBadge() {
   return (
-    <section className="py-16 bg-[#1e293b] relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+<section className="py-16 bg-[#0f172a] relative">      <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           
           {/* BBB Seal with Rating - Side by Side */}

@@ -23,8 +23,7 @@ export default function Hero() {
   return (
     <section 
       ref={heroRef}
-      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20 pool-bg hover-ripple"
-    >
+      className="relative z-0 min-h-[90vh] flex items-center justify-center overflow-hidden pt-28 pool-bg hover-ripple"    >
 
       {/* BACKGROUND IMAGE - Add this */}
       <div 
