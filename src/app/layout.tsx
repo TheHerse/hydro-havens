@@ -54,6 +54,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={`${inter.className} antialiased`}>
+        {/* Hidden form for Netlify detection */}
+        <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+          <input type="text" name="name" />
+          <input type="tel" name="phone" />
+          <input type="email" name="email" />
+          <select name="service">
+            <option value="custom-pools">Custom Pools</option>
+            <option value="pool-remodeling">Pool Remodeling</option>
+            <option value="outdoor-living">Outdoor Living Spaces</option>
+            <option value="pool-decking">Pool Decking & Concrete</option>
+            <option value="stamped-concrete">Stamped Concrete</option>
+            <option value="turf">Turf Installation</option>
+            <option value="other">Other</option>
+          </select>
+          <textarea name="message"></textarea>
+          <input name="bot-field" />
+        </form>
+        
+        <Tracking />
         {children}
       </body>
     </html>
