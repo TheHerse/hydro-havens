@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Tracking from "@/components/Tracking";
+import Navigation from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -73,7 +75,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </form>
         
         <Tracking />
-        {children}
+        <Navigation />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
