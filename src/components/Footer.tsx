@@ -42,10 +42,10 @@ export default function Footer() {
 
           {/* Bottom row: Tagline + Developer + Legal */}
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4 text-xs border-t border-slate-800/20 pt-4">
-            <p className="text-slate-500">Licensed, Insured & Locally Owned • Serving El Paso & Las Cruces</p>
+            <p className="text-slate-400">Licensed, Insured & Locally Owned • Serving El Paso & Las Cruces</p>
             
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-              <span className="text-slate-500">
+              <span className="text-slate-400">
                 Website by <a 
                   href="https://hersonhernandez.com" 
                   target="_blank" 
@@ -57,8 +57,8 @@ export default function Footer() {
               </span>
               
               <div className="flex items-center gap-6">
-                <Link href="/privacy-policy" className="text-slate-500 hover:text-teal-400 transition-colors">Privacy Policy</Link>
-                <Link href="/terms-of-service" className="text-slate-500 hover:text-teal-400 transition-colors">Terms of Service</Link>
+                <Link href="/privacy-policy" className="text-slate-400 hover:text-teal-400 transition-colors">Privacy Policy</Link>
+                <Link href="/terms-of-service" className="text-slate-400 hover:text-teal-400 transition-colors">Terms of Service</Link>
               </div>
             </div>
           </div>
