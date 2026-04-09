@@ -3,13 +3,13 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
 
 const projects = [
-  { title: "Custom Pool Build", category: "New Construction", image: "/images/pools/pool-1.png" },
-  { title: "Stamped Concrete Patio", category: "Hardscape", image: "/images/pools/concrete/concrete-1.png" },
-  { title: "Stamped Concrete Patio", category: "Hardscape", image: "/images/pools/concrete/concrete-2.png" },
-  { title: "Backyard Transformation", category: "Full Project", image: "/images/pools/outdoor/outdoor-1.png" },
-  { title: "Frontyard Transformation", category: "Full Project", image: "/images/pools/outdoor/outdoor-2.png" },
-  { title: "Decorative Concrete", category: "Hardscape", image: "/images/pools/concrete/concrete-3.png" },
-  { title: "Complete Backyard", category: "Full Project", image: "/images/pools/outdoor/outdoor-3.png" },
+  { title: "Custom Pool Build", category: "New Construction", image: "/images/pools/pool-1.webp" },
+  { title: "Stamped Concrete Patio", category: "Hardscape", image: "/images/pools/concrete/concrete-1.webp" },
+  { title: "Stamped Concrete Patio", category: "Hardscape", image: "/images/pools/concrete/concrete-2.webp" },
+  { title: "Backyard Transformation", category: "Full Project", image: "/images/pools/outdoor/outdoor-1.webp" },
+  { title: "Frontyard Transformation", category: "Full Project", image: "/images/pools/outdoor/outdoor-2.webp" },
+  { title: "Decorative Concrete", category: "Hardscape", image: "/images/pools/concrete/concrete-3.webp" },
+  { title: "Complete Backyard", category: "Full Project", image: "/images/pools/outdoor/outdoor-3.webp" },
 ];
 
 export default function Gallery() {
@@ -121,10 +121,10 @@ export default function Gallery() {
             </div>
             
             <div className="flex gap-3">
-              <button onClick={() => scroll("left")} className="w-12 h-12 rounded-full bg-slate-800/50 hover:bg-slate-700/50 flex items-center justify-center transition-colors border border-slate-700/30 backdrop-blur-sm">
+              <button onClick={() => scroll("left")} aria-label="View previous project" className="w-12 h-12 rounded-full bg-slate-800/50 hover:bg-slate-700/50 flex items-center justify-center transition-colors border border-slate-700/30 backdrop-blur-sm">
                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
               </button>
-              <button onClick={() => scroll("right")} className="w-12 h-12 rounded-full bg-slate-800/50 hover:bg-slate-700/50 flex items-center justify-center transition-colors border border-slate-700/30 backdrop-blur-sm">
+              <button onClick={() => scroll("right")} aria-label="View next project" className="w-12 h-12 rounded-full bg-slate-800/50 hover:bg-slate-700/50 flex items-center justify-center transition-colors border border-slate-700/30 backdrop-blur-sm">
                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
               </button>
             </div>

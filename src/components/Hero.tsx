@@ -44,7 +44,7 @@ export default function Hero() {
         style={{ 
           backgroundImage: `
             image-set(
-              url('/images/pools/pool-hero.png') type('image/png')
+              url('/images/pools/pool-hero.webp') type('image/webp')
             )
           `
         }}

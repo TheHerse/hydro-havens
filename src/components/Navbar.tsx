@@ -55,7 +55,7 @@ export default function Navbar() {
             
             <Link href="/" className="flex items-center">
               <img 
-                src="/images/logo/logo.png" 
+                src="/images/logo/logo.webp" 
                 alt="Hydro Havens Pools and Spas" 
                 className="h-14 w-auto object-contain"
               />

@@ -10,7 +10,7 @@ export default function Footer() {
           
           {/* Top row: Copyright + Social */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-500 text-sm">
+            <p className="text-slate-400 text-sm">
               © {currentYear} Hydro Havens Pools & Spas. All rights reserved.
             </p>
             
@@ -19,7 +19,7 @@ export default function Footer() {
                 href="https://www.instagram.com/hydro_havens_pools/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-slate-500 hover:text-teal-400 transition-colors"
+                className="text-slate-400 hover:text-teal-400 transition-colors"
                 aria-label="Instagram"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -30,7 +30,7 @@ export default function Footer() {
                 href="https://www.facebook.com/hydrohavenspoolsandspas" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-slate-500 hover:text-teal-400 transition-colors"
+                className="text-slate-400 hover:text-teal-400 transition-colors"
                 aria-label="Facebook"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -40,12 +40,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Bottom row: Tagline + Developer + Legal - moved website credit here */}
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-4 text-xs text-slate-600 border-t border-slate-800/20 pt-4">
-            <p>Licensed, Insured & Locally Owned • Serving El Paso & Las Cruces</p>
+          {/* Bottom row: Tagline + Developer + Legal */}
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-4 text-xs border-t border-slate-800/20 pt-4">
+            <p className="text-slate-500">Licensed, Insured & Locally Owned • Serving El Paso & Las Cruces</p>
             
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-              <span>
+              <span className="text-slate-500">
                 Website by <a 
                   href="https://hersonhernandez.com" 
                   target="_blank" 
@@ -57,8 +57,8 @@ export default function Footer() {
               </span>
               
               <div className="flex items-center gap-6">
-                <Link href="/privacy-policy" className="hover:text-teal-400 transition-colors">Privacy Policy</Link>
-                <Link href="/terms-of-service" className="hover:text-teal-400 transition-colors">Terms of Service</Link>
+                <Link href="/privacy-policy" className="text-slate-500 hover:text-teal-400 transition-colors">Privacy Policy</Link>
+                <Link href="/terms-of-service" className="text-slate-500 hover:text-teal-400 transition-colors">Terms of Service</Link>
               </div>
             </div>
           </div>

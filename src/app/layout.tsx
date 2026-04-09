@@ -1,21 +1,35 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Tracking from "@/components/Tracking";
 import Navigation from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap', 
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
   title: "Hydro Havens Pools & Spas",
   description: "El Paso's trusted pool maintenance & repair experts. Weekly cleaning, equipment repair, concrete patios. Licensed & insured. Free estimates!",
+  metadataBase: new URL('https://hydrohavenspools.com'),
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#0f172a', 
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <head>
+        {/* Preconnect for faster font loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <Tracking />
         <script
           type="application/ld+json"
@@ -24,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "HomeAndConstructionBusiness",
               "name": "Hydro Havens Pools & Spas",
-              "image": "https://hydrohavens.com/images/pools/pool-hero.png",
+              "image": "https://hydrohavenspools.com/images/pools/pool-hero.webp",
               "telephone": "+1-915-262-7590",
               "email": "marioluna301270@gmail.com",
               "address": {
@@ -38,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "latitude": "31.7619",
                 "longitude": "-106.4850"
               },
-              "url": "https://hydrohavens.com",
+              "url": "https://hydrohavenspools.com",
               "priceRange": "$$",
               "openingHours": ["Mo-Fr 08:00-18:00", "Sa 09:00-14:00"],
               "serviceArea": {
@@ -55,8 +69,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={`${inter.className} antialiased`}>
-        {/* Hidden form for Netlify detection */}
+      <body className={`${inter.className} antialiased bg-slate-950`}>
+        {/* Hidden form for Netlify detection - moved outside main to avoid hydration issues */}
         <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
           <input type="text" name="name" />
           <input type="tel" name="phone" />
@@ -74,9 +88,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <input name="bot-field" />
         </form>
         
-        <Tracking />
+        {/* Tracking removed from here - was causing duplicate */}
         <Navigation />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <Footer />
       </body>
     </html>

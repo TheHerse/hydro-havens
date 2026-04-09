@@ -14,37 +14,11 @@ export default function ContactPage() {
     const form = e.currentTarget;
     const formData = new FormData(form);
     
-    // Send to Netlify
     await fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData as any).toString(),
     });
-    
-    // CONVERSION TRACKING - Add this code
-    if (typeof window !== "undefined") {
-      // Google Ads Conversion
-      if (window.gtag) {
-        window.gtag("event", "conversion", {
-          send_to: "AW-CONVERSION_ID/CONVERSION_LABEL", // Replace with your actual ID
-          value: 1.0,
-          currency: "USD",
-        });
-      }
-      
-      // Facebook Pixel Lead Event
-      if (window.fbq) {
-        window.fbq("track", "Lead");
-      }
-      
-      // Optional: Google Analytics 4 Event
-      if (window.gtag) {
-        window.gtag("event", "form_submit", {
-          event_category: "contact",
-          event_label: "pool_estimate_request",
-        });
-      }
-    }
     
     setSubmitting(false);
     setSubmitted(true);
