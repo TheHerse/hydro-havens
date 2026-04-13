@@ -100,7 +100,7 @@ export default function FinancingPage() {
                 <div className="mb-6 bg-white rounded-2xl p-6 w-full shadow-lg">
                   <div className="relative h-20 md:h-24 w-full">
                     <Image 
-                      src="/images/financing/Viking-Logo-Horizontal.png" 
+                      src="/images/financing/Viking-Logo-Horizontal.webp" 
                       alt="Viking Capital" 
                       fill
                       className="object-contain"
@@ -188,7 +188,7 @@ export default function FinancingPage() {
                 Get Free Estimate
               </Link>
               <a 
-                href="tel:9152627590"
+                href="tel:+19152627590"
                 className="inline-flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-full font-bold transition-all"
               >
                 Call (915) 262-7590

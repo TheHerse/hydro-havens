@@ -19,8 +19,8 @@ export default function Home() {
       <div className="absolute bottom-0 left-0 right-0 h-[600px] bg-[radial-gradient(ellipse_at_bottom,rgba(6,182,212,0.1),transparent_60%)] pointer-events-none" />
       
       {/* Continuous subtle grid - very light, spans whole page */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:5rem_5rem] pointer-events-none opacity-50" />
-
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+      
       {/* CONTENT SECTIONS - No hard backgrounds, just content on the continuous canvas */}
       
       {/* Hero - Transparent background, lets page bg show through */}
@@ -108,7 +108,7 @@ export default function Home() {
               Get Free Estimate
             </Link>
             <a 
-              href="tel:9152627590"
+              href="tel:+19152627590"
               className="inline-flex items-center justify-center bg-slate-900/50 backdrop-blur-sm hover:bg-slate-800/70 text-white px-8 py-4 rounded-full font-bold transition-all border border-slate-700/50"
             >
               <Phone className="mr-2 w-5 h-5" />
