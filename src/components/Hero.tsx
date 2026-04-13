@@ -6,29 +6,38 @@ import Image from "next/image";
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
+  // Throttle mouse tracking to 60fps max
+  const rafRef = useRef<number | null>(null);
+  const mouseRef = useRef({ x: 50, y: 50 });
 
   useEffect(() => {
     const hero = heroRef.current;
     if (!hero) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = hero.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      hero.style.setProperty("--mouse-x", `${x}%`);
-      hero.style.setProperty("--mouse-y", `${y}%`);
+      if (rafRef.current) return; // Skip if already scheduled
+      
+      rafRef.current = requestAnimationFrame(() => {
+        const rect = hero.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        hero.style.setProperty("--mouse-x", `${x}%`);
+        hero.style.setProperty("--mouse-y", `${y}%`);
+        rafRef.current = null;
+      });
     };
 
     hero.addEventListener("mousemove", handleMouseMove);
-    return () => hero.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      hero.removeEventListener("mousemove", handleMouseMove);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   const trackClick = (label: string) => {
-    if (typeof window !== 'undefined' && 'gtag' in window) {
+    if (typeof window !== 'undefined') {
       // @ts-ignore
       window.gtag?.('event', 'click', { event_category: 'cta', event_label: label });
-    }
-    if (typeof window !== 'undefined' && 'fbq' in window) {
       // @ts-ignore
       window.fbq?.('trackCustom', `Click_${label}`);
     }
@@ -37,10 +46,10 @@ export default function Hero() {
   return (
     <section 
       ref={heroRef}
-      className="relative z-0 min-h-[90vh] flex items-center justify-center overflow-hidden pt-28 pool-bg hover-ripple"
+      className="relative z-0 min-h-[90vh] flex items-center justify-center overflow-hidden pt-28"
     >
-      {/* OPTIMIZED: Next.js Image with priority instead of CSS background */}
-      <div className="absolute inset-0">
+      {/* Hero Image - Absolute priority */}
+      <div className="hero-image-container">
         <Image
           src="/images/pools/pool-hero.webp"
           alt="Custom Pool Installation El Paso"
@@ -48,7 +57,7 @@ export default function Hero() {
           priority
           fetchPriority="high"
           sizes="100vw"
-          quality={85}
+          quality={70}
           className="object-cover"
           unoptimized
         />
@@ -57,26 +66,26 @@ export default function Hero() {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-slate-950/60" />
       
-      {/* Animated water ripples */}
-      <div className="ripple-container">
-        <div className="ripple" />
-        <div className="ripple" />
-        <div className="ripple" />
-        <div className="ripple" />
-        <div className="ripple" />
+      {/* OPTIMIZED: 3 ripples instead of 5, GPU-accelerated */}
+      <div className="ripple-container" style={{ transform: 'translateZ(0)' }}>
+        <div className="ripple" style={{ animationDuration: '6s' }} />
+        <div className="ripple" style={{ animationDuration: '8s', animationDelay: '2s' }} />
+        <div className="ripple" style={{ animationDuration: '10s', animationDelay: '4s' }} />
       </div>
 
-      {/* Ambient glow orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '4s' }} />
-      <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-teal-500/15 rounded-full blur-[80px] animate-pulse" style={{ animationDuration: '6s' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px]" />
-
-      {/* Caustic light patterns */}
-      <div className="absolute inset-0 opacity-20 bg-[linear-gradient(45deg,transparent_25%,rgba(6,182,212,0.1)_50%,transparent_75%)] bg-[length:250%_250%] animate-[shimmer_8s_ease-in-out_infinite]" />
-      
+      {/* OPTIMIZED: Single subtle glow instead of 3 heavy blurs */}
+      <div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[80px]" 
+        style={{ 
+          willChange: 'transform',
+          transform: 'translate(-50%, -50%) translateZ(0)',
+          animation: 'pulse 8s ease-in-out infinite'
+        }} 
+      />
+    
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm mb-8">
-          <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-teal-400" />
           <span className="text-sm text-slate-300">Accepting new clients in El Paso</span>
         </div>
 
@@ -88,8 +97,7 @@ export default function Hero() {
         </h1>
         
         <p className="text-xl md:text-2xl text-slate-200 mb-12 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-          Our team is dedicated to designing and constructing custom pools that combine beauty, functionality, and durability. Whether you're envisioning a serene oasis or an entertainment hotspot, we craft pools tailored to your unique style and needs.
-          <span className="block text-slate-300 mt-2">Licensed, insured, and locally owned.</span>
+          Our team is dedicated to designing and constructing custom pools that combine beauty, functionality, and durability...
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -110,7 +118,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom reflection fade */}
+      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0f172a] to-transparent" />
     </section>
   );

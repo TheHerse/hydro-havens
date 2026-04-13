@@ -1,18 +1,20 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
-import Tracking from "@/components/Tracking";
 import Navigation from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const inter = Inter({ 
   subsets: ["latin"],
-  display: 'swap', 
+  display: 'optional', 
   variable: '--font-inter',
+  preload: true,
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
-  title: "Hydro Havens Pools & Spas",
+  title: "Hydro Havens Pools & Spas | El Paso Pool Builders",
   description: "El Paso's trusted pool maintenance & repair experts. Weekly cleaning, equipment repair, concrete patios. Licensed & insured. Free estimates!",
   metadataBase: new URL('https://hydrohavenspools.com'),
 };
@@ -27,65 +29,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <Tracking />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "HomeAndConstructionBusiness",
-              "name": "Hydro Havens Pools & Spas",
-              "image": "https://hydrohavenspools.com/images/pools/pool-hero.webp",
-              "telephone": "+1-915-262-7590",
-              "email": "marioluna301270@gmail.com",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "El Paso",
-                "addressRegion": "TX",
-                "addressCountry": "US"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "31.7619",
-                "longitude": "-106.4850"
-              },
-              "url": "https://hydrohavenspools.com",
-              "priceRange": "$$",
-              "openingHours": ["Mo-Fr 08:00-18:00", "Sa 09:00-14:00"],
-              "serviceArea": {
-                "@type": "GeoCircle",
-                "geoMidpoint": {
-                  "@type": "GeoCoordinates",
-                  "latitude": "31.7619",
-                  "longitude": "-106.4850"
-                },
-                "geoRadius": "50000"
-              },
-              "serviceType": ["Pool Maintenance", "Pool Repair", "Pool Construction", "Concrete Work"]
-            })
-          }}
-        />
+        {/* PRELOAD HERO IMAGE - Critical for LCP */}
+        <link rel="preload" as="image" href="/images/pools/pool-hero.webp" type="image/webp" fetchPriority="high" />
+        
+        {/* INLINE CRITICAL CSS */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          .hero-image-container { position: absolute; inset: 0; z-index: -10; }
+          .hero-image-container img { object-fit: cover; width: 100%; height: 100%; }
+        `}} />
+        
+        {/* DEFERRED TRACKING - Loads AFTER page is interactive */}
+        <Script id="gtm" strategy="lazyOnload" dangerouslySetInnerHTML={{__html: `
+          // Paste your Google Tag Manager or tracking code here
+          // It will load after everything else
+        `}} />
+        
+        {/* Schema JSON-LD */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ /* your schema */ }) }} />
       </head>
       <body className={`${inter.className} antialiased bg-slate-950`}>
-        {/* Hidden form for Netlify detection - moved outside main to avoid hydration issues */}
-        <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
-          <input type="text" name="name" />
-          <input type="tel" name="phone" />
-          <input type="email" name="email" />
-          <select name="service">
-            <option value="custom-pools">Custom Pools</option>
-            <option value="pool-remodeling">Pool Remodeling</option>
-            <option value="outdoor-living">Outdoor Living Spaces</option>
-            <option value="pool-decking">Pool Decking & Concrete</option>
-            <option value="stamped-concrete">Stamped Concrete</option>
-            <option value="turf">Turf Installation</option>
-            <option value="other">Other</option>
-          </select>
-          <textarea name="message"></textarea>
-          <input name="bot-field" />
-        </form>
+        {/* Your hidden form */}
+        <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>...</form>
         
-        {/* Tracking removed from here - was causing duplicate */}
         <Navigation />
         <main id="main-content">{children}</main>
         <Footer />

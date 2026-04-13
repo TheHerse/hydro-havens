@@ -10,30 +10,97 @@ body {
   font-feature-settings: "rlig" 1, "calt" 1;
 }
 
-/* Animated pool water background with more white/light tones */
+/* Static gradient background with teal accents */
 .pool-bg {
   background: 
-    radial-gradient(ellipse at 20% 30%, rgba(6, 182, 212, 0.25) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 70%, rgba(20, 184, 166, 0.2) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 30%, rgba(6, 182, 212, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(20, 184, 166, 0.15) 0%, transparent 50%),
     linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-  background-size: 200% 200%, 200% 200%, 150% 150%, 100% 100%;
-  animation: waterMove 15s ease-in-out infinite;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
-@keyframes waterMove {
-  0%, 100% {
-    background-position: 0% 0%, 100% 100%, 50% 0%, 0% 0%;
-  }
-  33% {
-    background-position: 100% 50%, 0% 50%, 30% 20%, 0% 0%;
-  }
-  66% {
-    background-position: 50% 100%, 50% 0%, 70% 80%, 0% 0%;
-  }
+/* Animated water ripple effects */
+.ripple-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
 }
 
-/* Hide scrollbar for gallery */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(6, 182, 212, 0.5);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, rgba(255, 255, 255, 0.15) 40%, transparent 70%);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  will-change: transform, opacity;
+  animation: rippleEffect 6s ease-out infinite;
+  transform: translateZ(0);
+}
+
+.ripple:nth-child(1) {
+  width: 150px;
+  height: 150px;
+  top: 20%;
+  left: 30%;
+  animation-delay: 0s;
+}
+
+.ripple:nth-child(2) {
+  width: 280px;
+  height: 280px;
+  top: 60%;
+  left: 70%;
+  animation-delay: 2s;
+}
+
+.ripple:nth-child(3) {
+  width: 350px;
+  height: 350px;
+  top: 30%;
+  left: 60%;
+  animation-delay: 4s;
+}
+
+@keyframes rippleEffect {
+  0% {
+    transform: scale(0.3) translateZ(0);
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(6) translateZ(0);
+    opacity: 0;
+  }
+}
+/* Mouse-following highlight effect */
+.hover-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-ripple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+    rgba(255, 255, 255, 0.2) 0%, 
+    rgba(6, 182, 212, 0.2) 40%, 
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+  contain: paint;
+}
+
+.hover-ripple:hover::after {
+  opacity: 1;
+}
+
+/* Utility classes for glow effects */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -47,129 +114,49 @@ body {
   color: white;
 }
 
-/* EXAGGERATED BRIGHT RIPPLES */
-.ripple-container {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  border: 2px solid rgba(6, 182, 212, 0.6);
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, rgba(255, 255, 255, 0.15) 40%, transparent 70%);
-  box-shadow: 0 0 30px rgba(6, 182, 212, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.3);
-  animation: rippleEffect 6s ease-out infinite;
-}
-
-.ripple:nth-child(1) {
-  width: 150px;
-  height: 150px;
-  top: 20%;
-  left: 30%;
-  animation-delay: 0s;
-}
-
-.ripple:nth-child(2) {
-  width: 250px;
-  height: 250px;
-  top: 60%;
-  left: 70%;
-  animation-delay: 0.6s;
-}
-
-.ripple:nth-child(3) {
-  width: 120px;
-  height: 120px;
-  top: 40%;
-  left: 80%;
-  animation-delay: 1.2s;
-}
-
-.ripple:nth-child(4) {
-  width: 300px;
-  height: 300px;
-  top: 70%;
-  left: 20%;
-  animation-delay: 1.8s;
-}
-
-.ripple:nth-child(5) {
-  width: 180px;
-  height: 180px;
-  top: 30%;
-  left: 60%;
-  animation-delay: 2.4s;
-}
-
-@keyframes rippleEffect {
-  0% {
-    transform: scale(0.3);
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(8);
-    opacity: 0;
-  }
-}
-
-/* Enhanced hover ripple with brighter white */
-.hover-ripple {
-  position: relative;
-  overflow: hidden;
-}
-
-.hover-ripple::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-    rgba(255, 255, 255, 0.25) 0%, 
-    rgba(6, 182, 212, 0.3) 30%, 
-    transparent 60%);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.hover-ripple:hover::after {
-  opacity: 1;
-}
-
-/* Subtle white glow utility */
 .glow-white {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 0 40px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
 }
 
-/* White text with subtle glow */
 .text-glow {
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-/* Glass morphism with white tint */
 .glass-white {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateZ(0);
 }
 
-/* Subtle white gradient overlay */
-.gradient-white-subtle {
-  background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .pool-bg,
+  .ripple,
+  .ripple-container {
+    animation: none !important;
+  }
+  
+  .hover-ripple::after {
+    transition: none;
+  }
 }
 
-/* Light section background (alternative to stark white) */
-.bg-light-pool {
-  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-}
-
-/* Card with white border glow */
-.card-glow-white {
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .ripple:nth-child(3) {
+    display: none;
+  }
+  
+  .pool-bg {
+    background: 
+      radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 60%),
+      linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  }
+  
+  .glow-white,
+  .text-glow {
+    box-shadow: none;
+    text-shadow: none;
+  }
 }
