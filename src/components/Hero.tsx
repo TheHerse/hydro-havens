@@ -1,55 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
-  const heroRef = useRef<HTMLElement>(null);
-  // Throttle mouse tracking to 60fps max
-  const rafRef = useRef<number | null>(null);
-  const mouseRef = useRef({ x: 50, y: 50 });
-
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (rafRef.current) return; // Skip if already scheduled
-      
-      rafRef.current = requestAnimationFrame(() => {
-        const rect = hero.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        hero.style.setProperty("--mouse-x", `${x}%`);
-        hero.style.setProperty("--mouse-y", `${y}%`);
-        rafRef.current = null;
-      });
-    };
-
-    hero.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      hero.removeEventListener("mousemove", handleMouseMove);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
-
+  // Track button clicks for analytics
   const trackClick = (label: string) => {
     if (typeof window !== 'undefined') {
-      // @ts-ignore
-      window.gtag?.('event', 'click', { event_category: 'cta', event_label: label });
-      // @ts-ignore
-      window.fbq?.('trackCustom', `Click_${label}`);
+      (window as any).gtag?.('event', 'click', { event_category: 'cta', event_label: label });
+      (window as any).fbq?.('trackCustom', `Click_${label}`);
     }
   };
 
   return (
-    <section 
-      ref={heroRef}
-      className="relative z-0 min-h-[90vh] flex items-center justify-center overflow-hidden pt-28"
-    >
-      {/* Hero Image - Absolute priority */}
-      <div className="hero-image-container">
+    <section className="relative z-0 min-h-[90vh] flex items-center justify-center overflow-hidden pt-28">
+      {/* Background image - loads first */}
+      <div className="absolute inset-0">
         <Image
           src="/images/pools/pool-hero.webp"
           alt="Custom Pool Installation El Paso"
@@ -57,32 +23,26 @@ export default function Hero() {
           priority
           fetchPriority="high"
           sizes="100vw"
-          quality={70}
+          quality={60}
           className="object-cover"
           unoptimized
         />
       </div>
       
-      {/* Dark overlay */}
+      {/* Dark overlay for text readability */}
       <div className="absolute inset-0 bg-slate-950/60" />
       
-      {/* OPTIMIZED: 3 ripples instead of 5, GPU-accelerated */}
-      <div className="ripple-container" style={{ transform: 'translateZ(0)' }}>
-        <div className="ripple" style={{ animationDuration: '6s' }} />
-        <div className="ripple" style={{ animationDuration: '8s', animationDelay: '2s' }} />
-        <div className="ripple" style={{ animationDuration: '10s', animationDelay: '4s' }} />
+      {/* Water ripple animations */}
+      <div className="ripple-container">
+        <div className="ripple" />
+        <div className="ripple" />
+        <div className="ripple" />
       </div>
 
-      {/* OPTIMIZED: Single subtle glow instead of 3 heavy blurs */}
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[80px]" 
-        style={{ 
-          willChange: 'transform',
-          transform: 'translate(-50%, -50%) translateZ(0)',
-          animation: 'pulse 8s ease-in-out infinite'
-        }} 
-      />
-    
+      {/* Background glow effect */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[80px] pointer-events-none" />
+      
+      {/* Main content */}
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm mb-8">
           <span className="w-2 h-2 rounded-full bg-teal-400" />
@@ -97,9 +57,11 @@ export default function Hero() {
         </h1>
         
         <p className="text-xl md:text-2xl text-slate-200 mb-12 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-          Our team is dedicated to designing and constructing custom pools that combine beauty, functionality, and durability...
+          Our team is dedicated to designing and constructing custom pools that combine beauty, functionality, and durability. Whether you're envisioning a serene oasis or an entertainment hotspot, we craft pools tailored to your unique style and needs.
+          <span className="block text-slate-300 mt-2">Licensed, insured, and locally owned.</span>
         </p>
 
+        {/* Call to action buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link 
             href="/contact"
@@ -118,7 +80,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom fade */}
+      {/* Bottom fade to blend with next section */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0f172a] to-transparent" />
     </section>
   );

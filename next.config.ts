@@ -4,6 +4,7 @@ const nextConfig = {
   distDir: 'dist',
   images: {
     unoptimized: true,
+    qualities: [60, 75],
   },
   trailingSlash: true,
   poweredByHeader: false, 
