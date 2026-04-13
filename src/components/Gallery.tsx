@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState, useCallback, useEffect } from "react";
+import Image from "next/image"; // ADD THIS
 import { createPortal } from "react-dom";
 
 const projects = [
@@ -16,17 +17,15 @@ export default function Gallery() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
   const [selectedImage, setSelectedImage] = useState<typeof projects[0] | null>(null);
-  const [mounted, setMounted] = useState(false);
+  
+  // OPTIMIZED: Only mount lightbox when actually needed
+  const [lightboxMounted, setLightboxMounted] = useState(false);
   
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [hasDragged, setHasDragged] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
@@ -39,6 +38,7 @@ export default function Gallery() {
     setScale(1);
     setPosition({ x: 0, y: 0 });
     setHasDragged(false);
+    setLightboxMounted(true); // Mount only when needed
     if (typeof document !== 'undefined') {
       document.body.style.overflow = "hidden";
     }
@@ -48,6 +48,8 @@ export default function Gallery() {
     setSelectedImage(null);
     setScale(1);
     setPosition({ x: 0, y: 0 });
+    // Keep mounted=true so exit animation works, or set false after delay
+    setTimeout(() => setLightboxMounted(false), 100);
     if (typeof document !== 'undefined') {
       document.body.style.overflow = "unset";
     }
@@ -55,7 +57,6 @@ export default function Gallery() {
 
   const zoomIn = () => setScale(prev => Math.min(prev + 0.5, 4));
   const zoomOut = () => setScale(prev => Math.max(prev - 0.5, 0.5));
-  
   const resetZoom = () => {
     setScale(1);
     setPosition({ x: 0, y: 0 });
@@ -67,11 +68,8 @@ export default function Gallery() {
       setHasDragged(false);
       return;
     }
-    if (scale === 1) {
-      setScale(2.5);
-    } else {
-      resetZoom();
-    }
+    if (scale === 1) setScale(2.5);
+    else resetZoom();
   };
 
   const handleWheel = useCallback((e: React.WheelEvent) => {
@@ -91,16 +89,11 @@ export default function Gallery() {
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isDragging && scale > 1) {
       setHasDragged(true);
-      setPosition({
-        x: e.clientX - dragStart.x,
-        y: e.clientY - dragStart.y
-      });
+      setPosition({ x: e.clientX - dragStart.x, y: e.clientY - dragStart.y });
     }
   };
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
+  const handleMouseUp = () => setIsDragging(false);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -141,15 +134,16 @@ export default function Gallery() {
                   <div className="absolute inset-0 bg-slate-800 animate-pulse" />
                 )}
                 
-                <img 
-                  src={project.image} 
+                {/* OPTIMIZED: Next.js Image for zero CLS */}
+                <Image 
+                  src={project.image}
                   alt={project.title}
+                  fill
+                  sizes="(max-width: 768px) 320px, 384px"
                   loading={idx < 2 ? "eager" : "lazy"}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                   onLoad={() => setLoadedImages(prev => new Set(prev).add(idx))}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = 'none';
-                  }}
+                  unoptimized
                 />
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
@@ -171,8 +165,8 @@ export default function Gallery() {
         </div>
       </section>
 
-      {/* LIGHTBOX PORTAL */}
-      {mounted && selectedImage && createPortal(
+      {/* OPTIMIZED: Only render portal when needed */}
+      {lightboxMounted && selectedImage && createPortal(
         <div className="fixed inset-0 z-[9999] bg-slate-950 flex flex-col">
           {/* Header */}
           <div className="relative z-10 flex justify-between items-center p-4 bg-slate-900 border-b border-slate-800">
@@ -183,25 +177,17 @@ export default function Gallery() {
             
             <div className="flex items-center gap-2">
               <button onClick={zoomOut} className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-white transition-colors">
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-                </svg>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" /></svg>
               </button>
               <span className="text-white text-sm font-medium w-16 text-center">{Math.round(scale * 100)}%</span>
               <button onClick={zoomIn} className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-white transition-colors">
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                </svg>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
               </button>
               <button onClick={resetZoom} className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-white transition-colors">
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4h4m0 0l6 6m-6-6l6 6m8 8v-4h-4m0 0l-6-6m6 6l-6-6" />
-                </svg>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4h4m0 0l6 6m-6-6l6 6m8 8v-4h-4m0 0l-6-6m6 6l-6-6" /></svg>
               </button>
               <button onClick={closeLightbox} className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-white transition-colors ml-2">
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
             </div>
           </div>
@@ -221,6 +207,7 @@ export default function Gallery() {
               onMouseLeave={handleMouseUp}
               onWheel={handleWheel}
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
                 src={selectedImage.image} 
                 alt={selectedImage.title}
@@ -230,11 +217,8 @@ export default function Gallery() {
             </div>
           </div>
 
-          {/* Footer */}
           <div className="relative z-10 p-4 bg-slate-900 border-t border-slate-800 text-center">
-            <p className="text-slate-400 text-sm">
-              {scale === 1 ? 'Click image to zoom • Click dark area to close' : 'Drag to pan • Click image to reset'}
-            </p>
+            <p className="text-slate-400 text-sm">{scale === 1 ? 'Click image to zoom • Click dark area to close' : 'Drag to pan • Click image to reset'}</p>
           </div>
         </div>,
         document.body
