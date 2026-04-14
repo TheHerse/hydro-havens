@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const projects = [
-  { title: "Custom Pool Build", category: "New Construction", image: "/images/pools/pool-1.webp" },
+  { title: "Custom Pool Build", category: "New Construction", image: "/images/pools/pool-lp.webp" },
   { title: "Stamped Concrete Patio", category: "Hardscape", image: "/images/pools/concrete/concrete-1.webp" },
   { title: "Backyard Transformation", category: "Full Project", image: "/images/pools/outdoor/outdoor-1.webp" },
 ];
