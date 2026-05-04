@@ -111,7 +111,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Build Your Dream Pool?</h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              href="/contact"
+              href="/contact/#contact-form"
               className="inline-flex items-center justify-center bg-teal-500 hover:bg-teal-400 text-slate-950 px-8 py-4 rounded-full font-bold transition-all hover:scale-105 shadow-[0_0_30px_rgba(20,184,166,0.4)]"
             >
               Get Free Estimate

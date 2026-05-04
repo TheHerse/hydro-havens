@@ -115,7 +115,7 @@ export default function ServicesPage() {
               <h2 className="text-3xl font-bold text-white mb-4">Ready to Start Your Project?</h2>
               <p className="text-slate-400 mb-8">Get a free estimate for your pool or outdoor living project.</p>
               <Link 
-                href="/contact"
+                href="/contact/#contact-form"
                 className="inline-block bg-teal-500 hover:bg-teal-400 text-slate-950 px-8 py-4 rounded-full font-bold transition-all hover:scale-105"
               >
                 Get Free Estimate

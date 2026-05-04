@@ -64,7 +64,7 @@ export default function Hero() {
         {/* Call to action buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link 
-            href="/contact"
+            href="/contact/#contact-form"
             onClick={() => trackClick('hero_estimate')}
             className="bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold px-8 py-4 rounded-full transition-all hover:scale-105 text-lg shadow-[0_0_30px_rgba(20,184,166,0.3)]"
           >

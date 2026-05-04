@@ -192,7 +192,7 @@ export default function FinancingPage() {
             <p className="text-slate-400 mb-8">Contact us for a free estimate and financing guidance.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
-                href="/contact"
+                href="/contact/#contact-form"
                 className="inline-flex items-center justify-center bg-teal-500 hover:bg-teal-400 text-slate-950 px-8 py-4 rounded-full font-bold transition-all hover:scale-105"
               >
                 Get Free Estimate

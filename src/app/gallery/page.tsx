@@ -182,7 +182,7 @@ export default function GalleryPage() {
             <h2 className="text-3xl font-bold text-white mb-4">Ready to Build Your Dream?</h2>
             <p className="text-slate-400 mb-8">Let&apos;s create something beautiful together in El Paso.</p>
             <Link 
-              href="/contact"
+              href="/contact/#contact-form"
               className="inline-block bg-teal-500 hover:bg-teal-400 text-slate-950 px-8 py-4 rounded-full font-bold transition-all hover:scale-105"
             >
               Start Your Project

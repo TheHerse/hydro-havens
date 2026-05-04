@@ -34,7 +34,7 @@ export default function ContactPage() {
   if (submitted) {
     return (
       <div className="min-h-screen bg-slate-950 pt-32 pb-20 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.15),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.15),transparent_50%)] pointer-events-none" />
         <div className="relative z-10 max-w-2xl mx-auto">
           <Success onReset={() => setSubmitted(false)} />
         </div>
@@ -45,9 +45,9 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-slate-950 relative overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.15),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(20,184,166,0.1),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.15),transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(20,184,166,0.1),transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
       
       <div className="relative z-10 pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
@@ -88,7 +88,7 @@ export default function ContactPage() {
             </div>
 
             {/* Form */}
-            <div className="lg:col-span-2">
+            <div id="contact-form" className="lg:col-span-2 scroll-mt-28">
               <form 
                 name="contact" 
                 method="POST" 
@@ -97,7 +97,7 @@ export default function ContactPage() {
                 onSubmit={handleSubmit}
                 className="p-8 rounded-3xl bg-slate-900/50 border border-slate-800 backdrop-blur-sm relative overflow-hidden group hover:border-cyan-500/20 transition-colors"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                 
                 <input type="hidden" name="form-name" value="contact" />
                 <div hidden><input name="bot-field" /></div>

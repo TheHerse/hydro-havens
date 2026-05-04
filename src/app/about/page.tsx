@@ -66,7 +66,7 @@ export default function AboutPage() {
               <div className="relative z-10">
                 <h2 className="text-3xl font-bold text-white mb-4">Where Quality Is the Standard, Not the Upgrade</h2>
                 <Link 
-                  href="/contact"
+                  href="/contact/#contact-form"
                   className="inline-block bg-teal-500 hover:bg-teal-400 text-slate-950 px-8 py-3 rounded-full font-bold transition-all hover:scale-105 mt-4"
                 >
                   Work With Us
