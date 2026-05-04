@@ -1,4 +1,13 @@
 import React from 'react';
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy Policy",
+  description:
+    "Privacy Policy for Hydro Havens Pools & Spas, including how contact form, quote request, and project inquiry information is handled.",
+  path: "/privacy-policy/",
+});
 
 export default function PrivacyPolicyPage() {
   return (

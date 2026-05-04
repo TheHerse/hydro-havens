@@ -1,8 +1,6 @@
 export default function TrustBadge() {
   return (
     <section className="py-16 relative">
-      {/* No hard background here — lets the page's continuous background show through */}
-      
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           

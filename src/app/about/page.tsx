@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  title: "About Our El Paso Pool Company",
+  description:
+    "Learn about Hydro Havens Pools & Spas, a locally owned pool contractor serving El Paso and Las Cruces with custom pool construction and outdoor living work.",
+  path: "/about/",
+});
 
 export default function AboutPage() {
   return (
@@ -30,8 +39,8 @@ export default function AboutPage() {
               <h2 className="text-2xl font-bold text-white mb-4">What Sets Us Apart</h2>
               <p className="text-slate-400 leading-relaxed">
                 What sets us apart is our unwavering commitment to quality and customer satisfaction. 
-                We don't believe in one-size-fits-all solutions—every pool and spa we build is customized 
-                to match our clients' vision and lifestyle. From premium materials to expert craftsmanship 
+                We don&apos;t believe in one-size-fits-all solutions; every pool and spa we build is customized 
+                to match our clients&apos; vision and lifestyle. From premium materials to expert craftsmanship 
                 and clear communication, we ensure every project is completed to the highest standards 
                 and with a smooth, stress-free experience.
               </p>

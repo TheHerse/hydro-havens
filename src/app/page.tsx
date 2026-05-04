@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import TrustBadge from "@/components/TrustBadge";
 import Gallery from "@/components/Gallery";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Phone } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  title: "El Paso Custom Pool Builders | Hydro Havens Pools & Spas",
+  description:
+    "Hydro Havens Pools & Spas builds custom pools, spas, patios, turf, stamped concrete, and outdoor living spaces across El Paso and Las Cruces. Get a free estimate.",
+  path: "/",
+});
 
 export default function Home() {
   return (

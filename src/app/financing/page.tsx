@@ -1,7 +1,17 @@
 import React from 'react';
+import type { Metadata } from "next";
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Calculator, BadgeCheck, Clock } from 'lucide-react';
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Pool Financing Options",
+  description:
+    "Explore pool financing partners for custom pool, spa, and outdoor living projects in El Paso. Contact Hydro Havens for a free project estimate.",
+  path: "/financing/",
+  image: "/images/financing/lyon-transparent.webp",
+});
 
 export default function FinancingPage() {
   return (

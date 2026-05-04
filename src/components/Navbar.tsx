@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Navbar() {
@@ -15,14 +16,11 @@ export default function Navbar() {
     { href: "/contact", label: "Contact", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
   ];
 
-  // FIXED: Proper scroll detection with SSR safety
   useEffect(() => {
     const handleScroll = () => {
-      // Add solid background after scrolling 50px
       setScrolled(window.scrollY > 50);
     };
 
-    // Check initial scroll position
     handleScroll();
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -54,10 +52,14 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-24">
             
             <Link href="/" className="flex items-center">
-              <img 
+              <Image
                 src="/images/logo/logo.webp" 
                 alt="Hydro Havens Pools and Spas" 
+                width={189}
+                height={56}
                 className="h-14 w-auto object-contain"
+                priority
+                unoptimized
               />
             </Link>
             

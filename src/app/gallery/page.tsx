@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { createPortal } from 'react-dom';
@@ -19,7 +19,6 @@ const galleryImages = [
 ];
 
 export default function GalleryPage() {
-  const [mounted, setMounted] = useState(false);
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
   const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
   
@@ -31,26 +30,24 @@ export default function GalleryPage() {
   const [hasDragged, setHasDragged] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    document.body.style.overflow = selectedImage ? 'hidden' : 'unset';
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImage]);
 
   const openLightbox = (image: typeof galleryImages[0]) => {
     setSelectedImage(image);
     setScale(1);
     setPosition({ x: 0, y: 0 });
     setHasDragged(false);
-    if (typeof document !== 'undefined') {
-      document.body.style.overflow = 'hidden';
-    }
   };
 
   const closeLightbox = () => {
     setSelectedImage(null);
     setScale(1);
     setPosition({ x: 0, y: 0 });
-    if (typeof document !== 'undefined') {
-      document.body.style.overflow = 'unset';
-    }
   };
 
   const zoomIn = () => setScale(prev => Math.min(prev + 0.5, 4));
@@ -141,7 +138,7 @@ export default function GalleryPage() {
                 className="break-inside-avoid group relative overflow-hidden rounded-2xl bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all duration-500 cursor-pointer"
               >
                 <div className="relative bg-slate-800" style={{ aspectRatio: image.aspect }}>
-                  {!loadedImages.has(idx) && (
+                  {!loadedImages.has(image.id) && (
                     <div className="absolute inset-0 bg-slate-800 animate-pulse" />
                   )}
                   
@@ -152,7 +149,7 @@ export default function GalleryPage() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     loading={idx < 3 ? "eager" : "lazy"}
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    onLoad={() => setLoadedImages(prev => new Set(prev).add(idx))}
+                    onLoad={() => setLoadedImages(prev => new Set(prev).add(image.id))}
                     unoptimized
                   />
                 </div>
@@ -183,7 +180,7 @@ export default function GalleryPage() {
           {/* CTA */}
           <div className="mt-20 text-center bg-gradient-to-r from-cyan-500/10 to-teal-500/10 rounded-3xl p-12 border border-cyan-500/20">
             <h2 className="text-3xl font-bold text-white mb-4">Ready to Build Your Dream?</h2>
-            <p className="text-slate-400 mb-8">Let's create something beautiful together in El Paso.</p>
+            <p className="text-slate-400 mb-8">Let&apos;s create something beautiful together in El Paso.</p>
             <Link 
               href="/contact"
               className="inline-block bg-teal-500 hover:bg-teal-400 text-slate-950 px-8 py-4 rounded-full font-bold transition-all hover:scale-105"
@@ -195,7 +192,7 @@ export default function GalleryPage() {
       </div>
 
       {/* LIGHTBOX PORTAL */}
-      {mounted && selectedImage && createPortal(
+      {selectedImage && createPortal(
         <div className="fixed inset-0 z-[9999] bg-slate-950 flex flex-col">
           {/* Header */}
           <div className="relative z-10 flex justify-between items-center p-4 bg-slate-900 border-b border-slate-800">
@@ -205,23 +202,23 @@ export default function GalleryPage() {
             </div>
             
             <div className="flex items-center gap-2">
-              <button onClick={zoomOut} className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-white transition-colors">
+              <button type="button" onClick={zoomOut} aria-label="Zoom out" className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-white transition-colors">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
                 </svg>
               </button>
               <span className="text-white text-sm font-medium w-16 text-center">{Math.round(scale * 100)}%</span>
-              <button onClick={zoomIn} className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-white transition-colors">
+              <button type="button" onClick={zoomIn} aria-label="Zoom in" className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-white transition-colors">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
               </button>
-              <button onClick={resetZoom} className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-white transition-colors">
+              <button type="button" onClick={resetZoom} aria-label="Reset zoom" className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-white transition-colors">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4h4m0 0l6 6m-6-6l6 6m8 8v-4h-4m0 0l-6-6m6 6l-6-6" />
                 </svg>
               </button>
-              <button onClick={closeLightbox} className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-white transition-colors ml-2">
+              <button type="button" onClick={closeLightbox} aria-label="Close gallery image" className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-white transition-colors ml-2">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>

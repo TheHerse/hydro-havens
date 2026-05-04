@@ -1,4 +1,13 @@
 import React from 'react';
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Terms of Service",
+  description:
+    "Terms of Service for Hydro Havens Pools & Spas website quote requests, estimates, and service information.",
+  path: "/terms-of-service/",
+});
 
 export default function TermsOfServicePage() {
   return (

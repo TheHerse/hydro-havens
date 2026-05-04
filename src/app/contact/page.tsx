@@ -13,11 +13,18 @@ export default function ContactPage() {
     
     const form = e.currentTarget;
     const formData = new FormData(form);
+    const body = new URLSearchParams();
+
+    formData.forEach((value, key) => {
+      if (typeof value === "string") {
+        body.append(key, value);
+      }
+    });
     
     await fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData as any).toString(),
+      body: body.toString(),
     });
     
     setSubmitting(false);

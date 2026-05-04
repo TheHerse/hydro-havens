@@ -1,7 +1,11 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   output: 'export',
   distDir: 'dist',
+  turbopack: {
+    root: process.cwd(),
+  },
   images: {
     unoptimized: true,
     qualities: [60, 75],
@@ -9,6 +13,6 @@ const nextConfig = {
   trailingSlash: true,
   poweredByHeader: false, 
   compress: true,
-}
+};
 
-module.exports = nextConfig
+export default nextConfig;

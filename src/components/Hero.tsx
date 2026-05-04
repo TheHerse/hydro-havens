@@ -7,8 +7,8 @@ export default function Hero() {
   // Track button clicks for analytics
   const trackClick = (label: string) => {
     if (typeof window !== 'undefined') {
-      (window as any).gtag?.('event', 'click', { event_category: 'cta', event_label: label });
-      (window as any).fbq?.('trackCustom', `Click_${label}`);
+      window.gtag?.('event', 'click', { event_category: 'cta', event_label: label });
+      window.fbq?.('trackCustom', `Click_${label}`);
     }
   };
 
@@ -57,7 +57,7 @@ export default function Hero() {
         </h1>
         
         <p className="text-xl md:text-2xl text-slate-200 mb-12 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-          Our team is dedicated to designing and constructing custom pools that combine beauty, functionality, and durability. Whether you're envisioning a serene oasis or an entertainment hotspot, we craft pools tailored to your unique style and needs.
+          Our team is dedicated to designing and constructing custom pools that combine beauty, functionality, and durability. Whether you&apos;re envisioning a serene oasis or an entertainment hotspot, we craft pools tailored to your unique style and needs.
           <span className="block text-slate-300 mt-2">Licensed, insured, and locally owned.</span>
         </p>
 
