@@ -1,6 +1,8 @@
 "use client";
 
-export default function Success({ onReset }: { onReset?: () => void }) {
+export default function Success({ onReset, locale = "en" }: { onReset?: () => void; locale?: "en" | "es" }) {
+  const isSpanish = locale === "es";
+
   return (
     <section id="contact" className="min-h-screen bg-[#0f172a] flex items-center justify-center px-6 py-32">
       <div className="text-center max-w-2xl relative z-10">
@@ -34,9 +36,13 @@ export default function Success({ onReset }: { onReset?: () => void }) {
           </div>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Message Sent!</h1>
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          {isSpanish ? "Mensaje Enviado!" : "Message Sent!"}
+        </h1>
         <p className="text-slate-400 text-xl mb-8">
-          Thanks for reaching out. Mario will get back to you within 24 hours.
+          {isSpanish
+            ? "Gracias por contactarnos. Mario te respondera dentro de 24 horas."
+            : "Thanks for reaching out. Mario will get back to you within 24 hours."}
         </p>
         
         {onReset && (
@@ -44,7 +50,7 @@ export default function Success({ onReset }: { onReset?: () => void }) {
             onClick={onReset}
             className="bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold px-8 py-4 rounded-full transition-all hover:scale-105 shadow-[0_0_20px_rgba(20,184,166,0.3)]"
           >
-            Send Another Message
+            {isSpanish ? "Enviar Otro Mensaje" : "Send Another Message"}
           </button>
         )}
       </div>

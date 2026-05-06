@@ -15,6 +15,7 @@ export default function TrustBadge() {
               <iframe 
                 src="https://seal-elpaso.bbb.org/frame/gray-seal-69-145-bbb-99174777.png?chk=110782F98B" 
                 title="BBB Accredited Business"
+                loading="lazy"
                 scrolling="no"
                 style={{ border: 0, height: '110px', width: '69px', display: 'block' }}
               />

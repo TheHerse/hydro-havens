@@ -42,6 +42,7 @@ const businessSchema = {
       })),
       description:
         "Custom pool construction, pool remodeling, stamped concrete, turf installation, and outdoor living services in El Paso and Las Cruces.",
+      knowsLanguage: ["English", "Spanish"],
       openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",
@@ -88,13 +89,21 @@ export const metadata: Metadata = {
   category: "Pool Contractor",
   keywords: [
     "El Paso pool builders",
+    "constructores de albercas El Paso",
     "custom pools El Paso",
+    "albercas personalizadas El Paso",
     "pool contractor El Paso",
+    "contratista de albercas El Paso",
     "pool remodeling El Paso",
+    "remodelacion de albercas El Paso",
     "stamped concrete El Paso",
+    "concreto estampado El Paso",
     "outdoor living El Paso",
+    "espacios exteriores El Paso",
     "turf installation El Paso",
+    "pasto sintetico El Paso",
     "Las Cruces pool builders",
+    "constructores de albercas Las Cruces",
   ],
   authors: [{ name: siteName }],
   creator: siteName,
@@ -147,6 +156,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.variable}>
       <head>
+        <link rel="preconnect" href="https://seal-elpaso.bbb.org" crossOrigin="" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
       </head>
       <body className={`${inter.className} antialiased bg-slate-950`}>

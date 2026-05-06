@@ -2,18 +2,25 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith("/es");
+  const prefix = isSpanish ? "/es" : "";
+  const otherLanguagePath = isSpanish
+    ? pathname.replace(/^\/es/, "") || "/"
+    : `/es${pathname === "/" ? "" : pathname || ""}`;
 
   const navLinks = [
-    { href: "/", label: "Home", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
-    { href: "/services", label: "Services", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
-    { href: "/gallery", label: "Gallery", icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" },
-    { href: "/financing", label: "Financing", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
-    { href: "/about", label: "About", icon: "M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
-    { href: "/contact", label: "Contact", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
+    { href: `${prefix}/`, label: isSpanish ? "Inicio" : "Home", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
+    { href: `${prefix}/services`, label: isSpanish ? "Servicios" : "Services", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
+    { href: `${prefix}/gallery`, label: isSpanish ? "Galeria" : "Gallery", icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" },
+    { href: `${prefix}/financing`, label: isSpanish ? "Financiamiento" : "Financing", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
+    { href: `${prefix}/about`, label: isSpanish ? "Nosotros" : "About", icon: "M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
+    { href: `${prefix}/contact`, label: isSpanish ? "Contacto" : "Contact", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
   ];
 
   useEffect(() => {
@@ -51,13 +58,13 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-24">
             
-            <Link href="/" className="flex items-center">
+            <Link href={isSpanish ? "/es/" : "/"} className="flex items-center">
               <Image
-                src="/images/logo/logo.webp" 
+                src="/images/logo/logo-nav.webp" 
                 alt="Hydro Havens Pools and Spas" 
-                width={189}
+                width={56}
                 height={56}
-                className="h-14 w-auto object-contain"
+                className="h-14 w-14 object-contain"
                 priority
                 unoptimized
               />
@@ -82,6 +89,12 @@ export default function Navbar() {
               >
                 (915) 262-7590
               </a>
+              <Link
+                href={otherLanguagePath}
+                className="text-sm font-bold text-white border border-white/30 rounded-full px-4 py-2 hover:border-teal-400 hover:text-teal-300 transition-colors"
+              >
+                {isSpanish ? "EN" : "ES"}
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -160,8 +173,15 @@ export default function Navbar() {
             </a>
             
             <p className="text-center text-xs text-slate-500">
-              Serving El Paso & Las Cruces
+              {isSpanish ? "Sirviendo El Paso y Las Cruces" : "Serving El Paso & Las Cruces"}
             </p>
+            <Link
+              href={otherLanguagePath}
+              onClick={() => setIsOpen(false)}
+              className="flex items-center justify-center w-full border border-slate-700 text-slate-200 font-bold px-6 py-3 rounded-full transition-colors hover:border-teal-400 hover:text-teal-300"
+            >
+              {isSpanish ? "English" : "Espanol"}
+            </Link>
           </div>
 
         </div>

@@ -3,7 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Hero() {
+export default function Hero({ locale = "en" }: { locale?: "en" | "es" }) {
+  const isSpanish = locale === "es";
+  const contactHref = isSpanish ? "/es/contact/#contact-form" : "/contact/#contact-form";
+
   // Track button clicks for analytics
   const trackClick = (label: string) => {
     if (typeof window !== 'undefined') {
@@ -17,7 +20,7 @@ export default function Hero() {
       {/* Background image - loads first */}
       <div className="absolute inset-0">
         <Image
-          src="/images/pools/pool-hero.webp"
+          src="/images/pools/pool-hero-optimized.webp"
           alt="Custom Pool Installation El Paso"
           fill
           priority
@@ -46,29 +49,35 @@ export default function Hero() {
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm mb-8">
           <span className="w-2 h-2 rounded-full bg-teal-400" />
-          <span className="text-sm text-slate-300">Accepting new clients in El Paso</span>
+          <span className="text-sm text-slate-300">
+            {isSpanish ? "Aceptando nuevos clientes en El Paso" : "Accepting new clients in El Paso"}
+          </span>
         </div>
 
         <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tight drop-shadow-2xl">
           Hydro Havens
           <span className="block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 mt-2">
-            Pools and Spas
+            {isSpanish ? "Pools and Spas" : "Pools and Spas"}
           </span>
         </h1>
         
         <p className="text-xl md:text-2xl text-slate-200 mb-12 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-          Our team is dedicated to designing and constructing custom pools that combine beauty, functionality, and durability. Whether you&apos;re envisioning a serene oasis or an entertainment hotspot, we craft pools tailored to your unique style and needs.
-          <span className="block text-slate-300 mt-2">Licensed, insured, and locally owned.</span>
+          {isSpanish
+            ? "Diseñamos y construimos albercas personalizadas, remodelaciones y espacios exteriores para familias en El Paso, Las Cruces y areas cercanas."
+            : "Our team is dedicated to designing and constructing custom pools that combine beauty, functionality, and durability. Whether you're envisioning a serene oasis or an entertainment hotspot, we craft pools tailored to your unique style and needs."}
+          <span className="block text-slate-300 mt-2">
+            {isSpanish ? "Con licencia, asegurados y localmente operados." : "Licensed, insured, and locally owned."}
+          </span>
         </p>
 
         {/* Call to action buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link 
-            href="/contact/#contact-form"
+            href={contactHref}
             onClick={() => trackClick('hero_estimate')}
             className="bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold px-8 py-4 rounded-full transition-all hover:scale-105 text-lg shadow-[0_0_30px_rgba(20,184,166,0.3)]"
           >
-            Get Free Estimate
+            {isSpanish ? "Cotizacion Gratis" : "Get Free Estimate"}
           </Link>
           <a 
             href="tel:+19152627590"

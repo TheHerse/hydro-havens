@@ -5,13 +5,21 @@ export const dynamic = "force-static";
 
 const routes = [
   { path: "/", priority: 1 },
+  { path: "/es/", priority: 1 },
   { path: "/services/", priority: 0.95 },
+  { path: "/es/services/", priority: 0.95 },
   { path: "/contact/", priority: 0.95 },
+  { path: "/es/contact/", priority: 0.95 },
   { path: "/gallery/", priority: 0.8 },
+  { path: "/es/gallery/", priority: 0.8 },
   { path: "/financing/", priority: 0.75 },
+  { path: "/es/financing/", priority: 0.75 },
   { path: "/about/", priority: 0.7 },
+  { path: "/es/about/", priority: 0.7 },
   { path: "/privacy-policy/", priority: 0.3 },
+  { path: "/es/privacy-policy/", priority: 0.3 },
   { path: "/terms-of-service/", priority: 0.3 },
+  { path: "/es/terms-of-service/", priority: 0.3 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

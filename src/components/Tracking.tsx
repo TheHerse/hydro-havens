@@ -1,12 +1,41 @@
 "use client";
 import Script from "next/script";
 
-export default function Tracking() {
-  // Use environment variables (these will be empty until you add them to Netlify)
-  const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
-  const googleAdsId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+function configuredValue(value: string | undefined) {
+  if (!value || value.startsWith("your_") || value.includes("XXXXXXXXXX")) {
+    return undefined;
+  }
 
-  // Don't render scripts if IDs aren't set yet
+  return value;
+}
+
+const googleAdsId =
+  configuredValue(process.env.NEXT_PUBLIC_GOOGLE_ADS_ID) ||
+  configuredValue(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID);
+const contactConversionLabel = configuredValue(
+  process.env.NEXT_PUBLIC_GOOGLE_ADS_CONTACT_CONVERSION_LABEL,
+);
+
+export function trackContactConversion() {
+  if (typeof window === "undefined") return;
+
+  window.gtag?.("event", "generate_lead", {
+    event_category: "lead",
+    event_label: "contact_form",
+  });
+
+  if (googleAdsId && contactConversionLabel) {
+    window.gtag?.("event", "conversion", {
+      send_to: `${googleAdsId}/${contactConversionLabel}`,
+    });
+  }
+
+  window.fbq?.("track", "Lead");
+}
+
+export default function Tracking() {
+  const metaPixelId = configuredValue(process.env.NEXT_PUBLIC_META_PIXEL_ID);
+
   if (!metaPixelId && !googleAdsId) return null;
 
   return (

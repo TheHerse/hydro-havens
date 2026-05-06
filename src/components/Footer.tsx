@@ -1,7 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith("/es");
+  const prefix = isSpanish ? "/es" : "";
   
   return (
     <footer className="bg-slate-950 border-t border-slate-800/50 py-8">
@@ -11,7 +17,7 @@ export default function Footer() {
           {/* Top row: Copyright + Social */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-400 text-sm">
-              © {currentYear} Hydro Havens Pools & Spas. All rights reserved.
+              © {currentYear} Hydro Havens Pools & Spas. {isSpanish ? "Todos los derechos reservados." : "All rights reserved."}
             </p>
             
             <div className="flex items-center gap-4">
@@ -42,7 +48,11 @@ export default function Footer() {
 
           {/* Bottom row: Tagline + Developer + Legal */}
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4 text-xs border-t border-slate-800/20 pt-4">
-            <p className="text-slate-400">Licensed, Insured & Locally Owned • Serving El Paso & Las Cruces</p>
+            <p className="text-slate-400">
+              {isSpanish
+                ? "Con licencia, asegurados y locales - Sirviendo El Paso y Las Cruces"
+                : "Licensed, Insured & Locally Owned - Serving El Paso & Las Cruces"}
+            </p>
             
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
               <span className="text-slate-400">
@@ -57,8 +67,12 @@ export default function Footer() {
               </span>
               
               <div className="flex items-center gap-6">
-                <Link href="/privacy-policy" className="text-slate-400 hover:text-teal-400 transition-colors">Privacy Policy</Link>
-                <Link href="/terms-of-service" className="text-slate-400 hover:text-teal-400 transition-colors">Terms of Service</Link>
+                <Link href={`${prefix}/privacy-policy`} className="text-slate-400 hover:text-teal-400 transition-colors">
+                  {isSpanish ? "Privacidad" : "Privacy Policy"}
+                </Link>
+                <Link href={`${prefix}/terms-of-service`} className="text-slate-400 hover:text-teal-400 transition-colors">
+                  {isSpanish ? "Terminos" : "Terms of Service"}
+                </Link>
               </div>
             </div>
           </div>

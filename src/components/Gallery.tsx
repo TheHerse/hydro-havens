@@ -1,27 +1,42 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const projects = [
-  { title: "Custom Pool Build", category: "New Construction", image: "/images/pools/pool-lp.webp" },
-  { title: "Stamped Concrete Patio", category: "Hardscape", image: "/images/pools/concrete/concrete-1.webp" },
-  { title: "Backyard Transformation", category: "Full Project", image: "/images/pools/outdoor/outdoor-1.webp" },
-];
+const projects = {
+  en: [
+    { title: "Custom Pool Build", category: "New Construction", image: "/images/pools/pool-lp-optimized.webp" },
+    { title: "Stamped Concrete Patio", category: "Hardscape", image: "/images/pools/concrete/concrete-1-optimized.webp" },
+    { title: "Backyard Transformation", category: "Full Project", image: "/images/pools/outdoor/outdoor-1-optimized.webp" },
+  ],
+  es: [
+    { title: "Alberca Personalizada", category: "Construccion Nueva", image: "/images/pools/pool-lp-optimized.webp" },
+    { title: "Patio de Concreto Estampado", category: "Concreto", image: "/images/pools/concrete/concrete-1-optimized.webp" },
+    { title: "Transformacion de Patio", category: "Proyecto Completo", image: "/images/pools/outdoor/outdoor-1-optimized.webp" },
+  ],
+};
 
-export default function Gallery() {
+export default function Gallery({ locale = "en" }: { locale?: "en" | "es" }) {
+  const isSpanish = locale === "es";
+  const galleryHref = isSpanish ? "/es/gallery" : "/gallery";
+  const pageProjects = projects[locale];
+
   return (
     <section id="gallery" className="py-24 relative">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex justify-between items-end mb-12">
           <div>
-            <h2 className="text-sm font-medium text-teal-400 uppercase tracking-widest mb-4">Portfolio</h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Recent Projects</h3>
+            <h2 className="text-sm font-medium text-teal-400 uppercase tracking-widest mb-4">
+              {isSpanish ? "Portafolio" : "Portfolio"}
+            </h2>
+            <h3 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+              {isSpanish ? "Proyectos Recientes" : "Recent Projects"}
+            </h3>
           </div>
           
           <Link 
-            href="/gallery" 
+            href={galleryHref} 
             className="hidden md:flex items-center text-teal-400 hover:text-teal-300 font-medium transition-colors"
           >
-            View All Projects
+            {isSpanish ? "Ver Proyectos" : "View All Projects"}
             <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
@@ -30,10 +45,10 @@ export default function Gallery() {
 
         {/* Static Grid - Zero JS, Zero Hydration Cost */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {projects.map((project, idx) => (
+          {pageProjects.map((project) => (
             <Link
-              key={idx}
-              href="/gallery"
+              key={project.image}
+              href={galleryHref}
               className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900/50 border border-slate-800/50 hover:border-cyan-500/50 transition-all duration-500 hover:-translate-y-1 block"
             >
               <Image
@@ -41,7 +56,7 @@ export default function Gallery() {
                 alt={project.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
-                loading={idx === 0 ? "eager" : "lazy"}
+                loading="lazy"
                 decoding="async"
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
                 unoptimized
@@ -73,10 +88,10 @@ export default function Gallery() {
         {/* Mobile CTA */}
         <div className="mt-12 text-center md:hidden">
           <Link 
-            href="/gallery"
+            href={galleryHref}
             className="inline-flex items-center text-teal-400 hover:text-teal-300 font-medium"
           >
-            View Full Portfolio
+            {isSpanish ? "Ver Portafolio" : "View Full Portfolio"}
             <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
