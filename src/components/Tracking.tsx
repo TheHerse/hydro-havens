@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import Script from "next/script";
 
 function configuredValue(value: string | undefined) {
@@ -15,6 +16,15 @@ const googleAdsId =
 const contactConversionLabel = configuredValue(
   process.env.NEXT_PUBLIC_GOOGLE_ADS_CONTACT_CONVERSION_LABEL,
 );
+const metaPixelId = "1387603976492607";
+
+export function trackContactClick(contactMethod: "phone" | "email") {
+  if (typeof window === "undefined") return;
+
+  window.fbq?.("track", "Contact", {
+    contact_method: contactMethod,
+  });
+}
 
 export function trackContactConversion() {
   if (typeof window === "undefined") return;
@@ -34,7 +44,24 @@ export function trackContactConversion() {
 }
 
 export default function Tracking() {
-  const metaPixelId = configuredValue(process.env.NEXT_PUBLIC_META_PIXEL_ID);
+  useEffect(() => {
+    const handleContactClick = (event: MouseEvent) => {
+      const target = event.target instanceof Element ? event.target : null;
+      const phoneLink = target?.closest("a[href^='tel:']");
+      const emailLink = target?.closest("a[href^='mailto:']");
+
+      if (phoneLink) {
+        trackContactClick("phone");
+      }
+
+      if (emailLink) {
+        trackContactClick("email");
+      }
+    };
+
+    document.addEventListener("click", handleContactClick);
+    return () => document.removeEventListener("click", handleContactClick);
+  }, []);
 
   if (!metaPixelId && !googleAdsId) return null;
 
@@ -55,6 +82,17 @@ export default function Tracking() {
             fbq('track', 'PageView');
           `}
         </Script>
+      )}
+      {metaPixelId && (
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`}
+            alt=""
+          />
+        </noscript>
       )}
       
       {googleAdsId && (
