@@ -49,14 +49,10 @@ export default function Navbar() {
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled 
-            ? "bg-slate-950/95 backdrop-blur-md border-b border-slate-800/50 shadow-lg" 
-            : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#061118]/95 backdrop-blur-xl border-b ${scrolled ? "border-[#35c8d4]/25" : "border-white/10"}`}
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between h-24">
+          <div className="flex items-center justify-between h-20">
             
             <Link href={isSpanish ? "/es/" : "/"} className="flex items-center">
               <Image
@@ -76,8 +72,8 @@ export default function Navbar() {
                 <Link 
                   key={link.href}
                   href={link.href} 
-                  className={`transition-colors font-medium ${
-                    scrolled ? "text-slate-300 hover:text-teal-400" : "text-white hover:text-teal-400"
+                className={`transition-colors text-[11px] uppercase tracking-[0.12em] font-bold ${
+                    "text-slate-200 hover:text-[#55dfe2]"
                   }`}
                 >
                   {link.label}
@@ -85,13 +81,13 @@ export default function Navbar() {
               ))}
               <a 
                 href="tel:+19152627590"
-                className="bg-teal-500 hover:bg-teal-400 text-slate-950 px-6 py-3 rounded-full font-bold transition-all hover:scale-105 shadow-[0_0_20px_rgba(20,184,166,0.3)]"
+                className="bg-[#35c8d4] hover:bg-[#6ee7e7] text-[#07141c] px-5 py-3 text-xs uppercase tracking-[0.1em] font-bold transition-colors"
               >
                 (915) 262-7590
               </a>
               <Link
                 href={otherLanguagePath}
-                className="text-sm font-bold text-white border border-white/30 rounded-full px-4 py-2 hover:border-teal-400 hover:text-teal-300 transition-colors"
+                className="text-xs font-bold text-white border-l border-white/25 pl-5 hover:text-cyan-200 transition-colors"
               >
                 {isSpanish ? "EN" : "ES"}
               </Link>
@@ -117,21 +113,21 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div 
-        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-[#041017]/75 backdrop-blur-md z-40 md:hidden transition-opacity duration-300 ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsOpen(false)}
       />
 
       {/* Mobile Menu Drawer */}
-      <div className={`fixed top-0 right-0 h-full w-[280px] bg-slate-900/95 backdrop-blur-xl border-l border-slate-800 z-50 md:hidden transform transition-transform duration-300 ease-out ${
+      <div className={`fixed top-0 right-0 h-full w-[min(88vw,360px)] bg-[#dceef1] border-l-4 border-[#159dac] shadow-[-24px_0_70px_rgba(3,21,29,.35)] z-50 md:hidden transform transition-transform duration-300 ease-out ${
         isOpen ? "translate-x-0" : "translate-x-full"
       }`}>
-        <div className="flex flex-col h-full pt-24 pb-8 px-6">
+        <div className="flex flex-col h-full pt-20">
           
           <button 
             onClick={() => setIsOpen(false)}
-            className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center text-slate-400 hover:text-white transition-colors"
+            className="absolute top-5 right-5 w-11 h-11 flex items-center justify-center text-[#071923] border border-[#0d5663]/20 hover:bg-white/60 transition-colors"
             aria-label="Close navigation menu"
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -139,32 +135,32 @@ export default function Navbar() {
             </svg>
           </button>
 
-          <nav className="flex-1 space-y-2">
+          <nav className="flex-1 overflow-y-auto border-t border-[#0d5663]/15">
             {navLinks.map((link, idx) => (
               <Link 
                 key={link.href}
                 href={link.href} 
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-4 p-4 rounded-xl text-slate-300 hover:text-teal-400 hover:bg-slate-800/50 transition-all duration-200"
+                className="flex items-center gap-4 px-7 py-5 text-[#123641] border-b border-[#0d5663]/15 hover:text-[#067785] hover:bg-white/60 transition-all duration-200"
                 style={{ 
                   transitionDelay: isOpen ? `${idx * 50}ms` : "0ms",
                   opacity: isOpen ? 1 : 0,
                   transform: isOpen ? "translateX(0)" : "translateX(20px)"
                 }}
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5 text-[#159dac]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={link.icon} />
                 </svg>
-                <span className="text-lg font-medium">{link.label}</span>
+                <span className="text-base font-display font-semibold tracking-tight">{link.label}</span>
               </Link>
             ))}
           </nav>
 
-          <div className="space-y-4 pt-6 border-t border-slate-800">
+          <div className="space-y-4 bg-[#071923] px-7 py-7 border-t-4 border-[#35c8d4]">
             <a 
               href="tel:+19152627590" 
               onClick={() => setIsOpen(false)}
-              className="flex items-center justify-center gap-2 w-full bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold px-6 py-4 rounded-full transition-all"
+              className="flex items-center justify-center gap-2 w-full bg-[#35c8d4] hover:bg-[#55dfe2] text-[#061923] font-bold px-6 py-4 transition-colors"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -172,13 +168,13 @@ export default function Navbar() {
               (915) 262-7590
             </a>
             
-            <p className="text-center text-xs text-slate-500">
+            <p className="text-center text-xs text-white/45">
               {isSpanish ? "Sirviendo El Paso y Las Cruces" : "Serving El Paso & Las Cruces"}
             </p>
             <Link
               href={otherLanguagePath}
               onClick={() => setIsOpen(false)}
-              className="flex items-center justify-center w-full border border-slate-700 text-slate-200 font-bold px-6 py-3 rounded-full transition-colors hover:border-teal-400 hover:text-teal-300"
+              className="flex items-center justify-center w-full border border-white/20 text-white font-bold px-6 py-3 transition-colors hover:border-[#35c8d4] hover:text-[#55dfe2]"
             >
               {isSpanish ? "English" : "Espanol"}
             </Link>

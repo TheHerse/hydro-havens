@@ -40,7 +40,7 @@ export default function ContactPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-slate-950 pt-32 pb-20 px-6 relative overflow-hidden">
+      <div className="site-interior min-h-screen pt-32 pb-20 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.15),transparent_50%)] pointer-events-none" />
         <div className="relative z-10 max-w-2xl mx-auto">
           <Success onReset={() => setSubmitted(false)} />
@@ -50,7 +50,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden">
+    <div className="site-interior site-contact min-h-screen relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.15),transparent_50%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(20,184,166,0.1),transparent_50%)] pointer-events-none" />

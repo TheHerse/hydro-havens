@@ -11,7 +11,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden">
+    <div className="site-interior site-about min-h-screen relative overflow-hidden">
       {/* Background Effects - Matching Other Pages */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.15),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(20,184,166,0.1),transparent_50%)]" />

@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function FinancingPage() {
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden">
+    <div className="site-interior site-financing min-h-screen relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.15),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(20,184,166,0.1),transparent_50%)]" />
@@ -101,7 +101,7 @@ export default function FinancingPage() {
           {/* Other Lenders Grid */}
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             {/* Viking Capital */}
-            <div className="group relative p-8 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-transparent transition-all duration-500">
+            <div className="lender-card group relative p-8 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 transition-all duration-500">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-teal-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
               <div className="absolute inset-[1px] rounded-2xl bg-slate-900" />
               
@@ -144,7 +144,7 @@ export default function FinancingPage() {
             </div>
 
             {/* HFS Financial */}
-            <div className="group relative p-8 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-transparent transition-all duration-500">
+            <div className="lender-card group relative p-8 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 transition-all duration-500">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
               <div className="absolute inset-[1px] rounded-2xl bg-slate-900" />
               

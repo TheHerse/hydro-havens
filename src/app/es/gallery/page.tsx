@@ -16,7 +16,7 @@ const galleryImages = [
 
 export default function SpanishGalleryPage() {
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden">
+    <div className="site-interior site-gallery min-h-screen relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.15),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(20,184,166,0.1),transparent_50%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem]" />

@@ -10,13 +10,13 @@ export default function Footer() {
   const prefix = isSpanish ? "/es" : "";
   
   return (
-    <footer className="bg-slate-950 border-t border-slate-800/50 py-8">
+    <footer className="bg-[#041017] border-t-4 border-[#087f8c] py-12">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-8">
           
           {/* Top row: Copyright + Social */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-400 text-sm">
+            <p className="text-white/55 text-sm tracking-wide">
               © {currentYear} Hydro Havens Pools & Spas. {isSpanish ? "Todos los derechos reservados." : "All rights reserved."}
             </p>
             
@@ -47,7 +47,7 @@ export default function Footer() {
           </div>
 
           {/* Bottom row: Tagline + Developer + Legal */}
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-4 text-xs border-t border-slate-800/20 pt-4">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-4 text-xs border-t border-white/10 pt-6">
             <p className="text-slate-400">
               {isSpanish
                 ? "Con licencia, asegurados y locales - Sirviendo El Paso y Las Cruces"

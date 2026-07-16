@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function SpanishPrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="legal-page min-h-screen bg-[#dceef1]">
       <div className="bg-slate-900 text-white py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold">Política de Privacidad</h1>

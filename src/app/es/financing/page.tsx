@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function SpanishFinancingPage() {
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden">
+    <div className="site-interior site-financing min-h-screen relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.15),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(20,184,166,0.1),transparent_50%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
@@ -71,7 +71,7 @@ export default function SpanishFinancingPage() {
               { name: "Viking Capital", image: "/images/financing/Viking-Logo-Horizontal.webp", href: "https://poolloan.net/" },
               { name: "HFS Financial", image: "/images/financing/hfs-logo-new.webp", href: "https://www.hfsfinancial.net/" },
             ].map((lender) => (
-              <div key={lender.name} className="group relative p-8 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-transparent transition-all duration-500">
+              <div key={lender.name} className="lender-card group relative p-8 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 transition-all duration-500">
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-teal-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
                 <div className="absolute inset-[1px] rounded-2xl bg-slate-900" />
                 <div className="relative z-10">
