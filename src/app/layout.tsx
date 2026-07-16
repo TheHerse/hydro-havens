@@ -17,7 +17,7 @@ const sora = Sora({
   subsets: ["latin"],
   display: "optional",
   variable: "--font-sora",
-  preload: true,
+  preload: false,
 });
 
 const businessSchema = {
@@ -162,7 +162,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${manrope.variable} ${sora.variable}`}>
       <head>
-        <link rel="preconnect" href="https://seal-elpaso.bbb.org" crossOrigin="" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
       </head>
       <body className={`${manrope.className} antialiased bg-slate-950`}>
