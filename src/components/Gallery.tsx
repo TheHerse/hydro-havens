@@ -20,7 +20,8 @@ export default function Gallery({ locale = "en" }: { locale?: "en" | "es" }) {
   const pageProjects = projects[locale];
 
   return (
-    <section id="gallery" className="py-32 relative bg-[radial-gradient(circle_at_14%_8%,rgba(25,180,195,.14),transparent_28%),linear-gradient(180deg,#07151d_0%,#061118_100%)]">
+    <section id="gallery" className="py-32 relative overflow-hidden bg-[radial-gradient(circle_at_14%_8%,rgba(25,180,195,.14),transparent_28%),linear-gradient(180deg,#07151d_0%,#061118_100%)]">
+      <div className="gallery-background-caustics" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex justify-between items-end mb-14">
           <div className="relative pl-6 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-[#55dfe2] before:via-[#169dad] before:to-transparent">

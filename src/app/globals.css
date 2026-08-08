@@ -58,6 +58,69 @@ body {
   background: linear-gradient(90deg, rgba(4, 24, 32, .22), transparent 35%), linear-gradient(0deg, rgba(3, 19, 27, .48), transparent 48%);
 }
 
+/* Organic caustics: one tiny cached texture on a single composited layer. */
+.hero-background-caustics {
+  position: absolute;
+  inset: -10%;
+  z-index: 0;
+  pointer-events: none;
+  contain: paint;
+  opacity: .11;
+  mix-blend-mode: multiply;
+  filter: contrast(1.18) brightness(1.06);
+  background: url("/images/pools/water-caustics.webp") center / cover no-repeat;
+  transform: translate3d(-2%, -1%, 0) scale(1.06) rotate(-1deg);
+}
+
+@keyframes hero-caustic-drift {
+  from {
+    opacity: .11;
+    transform: translate3d(-2%, -1%, 0) scale(1.06) rotate(-1deg);
+  }
+  to {
+    opacity: .16;
+    transform: translate3d(3%, 2%, 0) scale(1.12) rotate(1.5deg);
+  }
+}
+
+@media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+  .hero-background-caustics {
+    will-change: transform;
+    animation: hero-caustic-drift 13s ease-in-out 1.4s infinite alternate;
+  }
+}
+
+.gallery-background-caustics {
+  position: absolute;
+  inset: -10%;
+  z-index: 0;
+  pointer-events: none;
+  contain: paint;
+  opacity: .13;
+  mix-blend-mode: screen;
+  filter: contrast(1.16) brightness(.82);
+  background: url("/images/pools/water-caustics.webp") center / cover no-repeat;
+  transform: translate3d(2%, -1%, 0) scale(1.06) rotate(1deg);
+}
+
+@keyframes gallery-caustic-drift {
+  from {
+    opacity: .1;
+    transform: translate3d(2%, -1%, 0) scale(1.06) rotate(1deg);
+  }
+  to {
+    opacity: .16;
+    transform: translate3d(-3%, 2%, 0) scale(1.12) rotate(-1.5deg);
+  }
+}
+
+@media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+  .gallery-background-caustics {
+    will-change: transform, opacity;
+    animation: gallery-caustic-drift 16s ease-in-out 1.8s infinite alternate;
+  }
+}
+
 .hero-waterline {
   position: absolute;
   left: 0;
@@ -205,7 +268,10 @@ body {
 /* Reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .pool-bg,
-  .hover-ripple::after {
+  .hover-ripple::after,
+  .hero-background-caustics,
+  .gallery-background-caustics {
+    animation: none;
     transition: none;
   }
 }
@@ -213,6 +279,8 @@ body {
 /* Mobile-specific adjustments */
 @media (max-width: 768px) {
   .hero-cinematic-overlay { background: linear-gradient(0deg, rgba(3,12,18,.42), transparent 70%); }
+  .hero-background-caustics { inset: -8%; opacity: .07; }
+  .gallery-background-caustics { inset: -8%; opacity: .06; }
   
   .pool-bg {
     background: 

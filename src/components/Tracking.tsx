@@ -18,10 +18,29 @@ const contactConversionLabel = configuredValue(
 );
 const metaPixelId = "1387603976492607";
 
+function trackMetaEvent(eventName: "PageView" | "Contact" | "Lead", data?: Record<string, string>) {
+  if (typeof window === "undefined" || !metaPixelId) return;
+
+  const params = new URLSearchParams({
+    id: metaPixelId,
+    ev: eventName,
+    dl: window.location.href,
+    noscript: "1",
+  });
+
+  Object.entries(data ?? {}).forEach(([key, value]) => {
+    params.set(`cd[${key}]`, value);
+  });
+
+  const beacon = new Image(1, 1);
+  beacon.referrerPolicy = "strict-origin-when-cross-origin";
+  beacon.src = `https://www.facebook.com/tr?${params.toString()}`;
+}
+
 export function trackContactClick(contactMethod: "phone" | "email") {
   if (typeof window === "undefined") return;
 
-  window.fbq?.("track", "Contact", {
+  trackMetaEvent("Contact", {
     contact_method: contactMethod,
   });
 }
@@ -40,15 +59,18 @@ export function trackContactConversion() {
     });
   }
 
-  window.fbq?.("track", "Lead");
+  trackMetaEvent("Lead");
 }
 
 export default function Tracking() {
   useEffect(() => {
+    trackMetaEvent("PageView");
+
     const handleContactClick = (event: MouseEvent) => {
       const target = event.target instanceof Element ? event.target : null;
       const phoneLink = target?.closest("a[href^='tel:']");
       const emailLink = target?.closest("a[href^='mailto:']");
+      const estimateLink = target?.closest("a[href*='/contact/']");
 
       if (phoneLink) {
         trackContactClick("phone");
@@ -57,44 +79,20 @@ export default function Tracking() {
       if (emailLink) {
         trackContactClick("email");
       }
+
+      if (estimateLink) {
+        trackMetaEvent("Contact", { contact_method: "form" });
+      }
     };
 
     document.addEventListener("click", handleContactClick);
     return () => document.removeEventListener("click", handleContactClick);
   }, []);
 
-  if (!metaPixelId && !googleAdsId) return null;
+  if (!googleAdsId) return null;
 
   return (
     <>
-      {metaPixelId && (
-        <Script id="meta-pixel" strategy="lazyOnload">
-          {`
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${metaPixelId}');
-            fbq('track', 'PageView');
-          `}
-        </Script>
-      )}
-      {metaPixelId && (
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`}
-            alt=""
-          />
-        </noscript>
-      )}
-      
       {googleAdsId && (
         <>
           <Script 

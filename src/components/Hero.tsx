@@ -17,6 +17,7 @@ export default function Hero({ locale = "en" }: { locale?: "en" | "es" }) {
 
   return (
     <section className="luxury-hero relative z-0 min-h-[760px] lg:min-h-[clamp(720px,78vh,860px)] bg-[#dceef1] overflow-hidden pt-20 lg:pt-0">
+      <div className="hero-background-caustics" aria-hidden="true" />
       {/* Background image - loads first */}
       <div className="hero-image-panel relative lg:absolute lg:top-1/2 lg:-translate-y-1/2 h-[44vh] min-h-[360px] lg:h-[clamp(460px,55vh,620px)] lg:min-h-0 overflow-hidden shadow-[0_30px_80px_rgba(5,35,44,.22)]">
         <Image
@@ -37,11 +38,11 @@ export default function Hero({ locale = "en" }: { locale?: "en" | "es" }) {
       {/* Background glow effect */}
       {/* Main content */}
       <div className="relative z-10 w-full max-w-[1480px] mx-auto px-6 md:px-10 lg:px-14 py-16 lg:py-0 lg:min-h-[clamp(720px,78vh,860px)] lg:flex lg:items-center pointer-events-none">
-        <div className="max-w-[560px] lg:max-w-[460px] lg:w-[34%] lg:pb-2 pointer-events-auto">
+        <div className="relative z-10 max-w-[560px] lg:max-w-[460px] lg:w-[34%] lg:pb-2 pointer-events-auto">
         <div className="flex items-center gap-4 mb-7">
           <span className="h-[3px] w-10 bg-[#16a9b8]" />
           <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#2e6670]">
-            {isSpanish ? "Aceptando nuevos clientes en El Paso" : "Accepting new clients in El Paso"}
+            {isSpanish ? "Aceptando nuevos clientes en El Paso y Las Cruces" : "Accepting new clients in El Paso & Las Cruces"}
           </span>
         </div>
 
