@@ -1,24 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Sora } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Tracking from "@/components/Tracking";
 import { absoluteUrl, contactEmail, phoneNumber, serviceAreas, siteName, siteUrl } from "@/lib/seo";
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  display: "optional",
-  variable: "--font-manrope",
-  preload: true,
-});
-
-const sora = Sora({
-  subsets: ["latin"],
-  display: "optional",
-  variable: "--font-sora",
-  preload: false,
-});
 
 const businessSchema = {
   "@context": "https://schema.org",
@@ -160,11 +145,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${sora.variable}`}>
+    <html lang="en">
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
       </head>
-      <body className={`${manrope.className} antialiased bg-slate-950`}>
+      <body className="antialiased bg-slate-950">
         <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
           <input type="hidden" name="form-name" value="contact" />
           <input name="name" />

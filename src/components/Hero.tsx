@@ -1,19 +1,9 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Hero({ locale = "en" }: { locale?: "en" | "es" }) {
   const isSpanish = locale === "es";
   const contactHref = isSpanish ? "/es/contact/#contact-form" : "/contact/#contact-form";
-
-  // Track button clicks for analytics
-  const trackClick = (label: string) => {
-    if (typeof window !== 'undefined') {
-      window.gtag?.('event', 'click', { event_category: 'cta', event_label: label });
-      window.fbq?.('trackCustom', `Click_${label}`);
-    }
-  };
 
   return (
     <section className="luxury-hero relative z-0 min-h-[760px] lg:min-h-[clamp(720px,78vh,860px)] bg-[#dceef1] overflow-hidden pt-20 lg:pt-0">
@@ -66,14 +56,12 @@ export default function Hero({ locale = "en" }: { locale?: "en" | "es" }) {
         <div className="flex flex-col sm:flex-row gap-3">
           <Link 
             href={contactHref}
-            onClick={() => trackClick('hero_estimate')}
             className="bg-[#35c8d4] hover:bg-[#6ee7e7] text-[#04151d] font-bold px-8 py-4 transition-colors text-sm uppercase tracking-[0.11em] text-center shadow-[0_12px_36px_rgba(53,200,212,.22)]"
           >
             {isSpanish ? "Cotizacion Gratis" : "Get Free Estimate"}
           </Link>
           <a 
             href="tel:+19152627590"
-            onClick={() => trackClick('hero_phone')}
             className="border border-[#123b46]/30 hover:border-[#087f8c] text-[#0a303b] px-8 py-4 transition-colors hover:bg-white/70 text-sm uppercase tracking-[0.11em] font-bold text-center"
           >
             (915) 262-7590
