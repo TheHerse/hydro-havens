@@ -32,7 +32,7 @@ const businessSchema = {
         name: area,
       })),
       description:
-        "Custom pool construction, pool remodeling, stamped concrete, turf installation, and outdoor living services in El Paso and Las Cruces.",
+        "Custom pool construction, pool remodeling, stamped concrete, turf installation, and outdoor living services in El Paso.",
       knowsLanguage: ["English", "Spanish"],
       openingHoursSpecification: [
         {
@@ -93,8 +93,6 @@ export const metadata: Metadata = {
     "espacios exteriores El Paso",
     "turf installation El Paso",
     "pasto sintetico El Paso",
-    "Las Cruces pool builders",
-    "constructores de albercas Las Cruces",
   ],
   authors: [{ name: siteName }],
   creator: siteName,
@@ -104,7 +102,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Hydro Havens Pools & Spas | El Paso Pool Builders",
-    description: "Custom pools, remodeling, concrete, turf, and outdoor living spaces in El Paso and Las Cruces. Licensed and insured. Free estimates.",
+    description: "Custom pools, remodeling, concrete, turf, and outdoor living spaces in El Paso. Licensed and insured. Free estimates.",
     url: siteUrl,
     siteName,
     type: "website",
@@ -121,7 +119,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Hydro Havens Pools & Spas | El Paso Pool Builders",
-    description: "Custom pools, remodeling, concrete, turf, and outdoor living spaces in El Paso and Las Cruces.",
+    description: "Custom pools, remodeling, concrete, turf, and outdoor living spaces in El Paso.",
     images: ["/images/pools/pool-hero.webp"],
   },
   robots: {

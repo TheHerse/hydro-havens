@@ -50,8 +50,8 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4 text-xs border-t border-white/10 pt-6">
             <p className="text-slate-400">
               {isSpanish
-                ? "Con licencia, asegurados y locales - Sirviendo El Paso y Las Cruces"
-                : "Licensed, Insured & Locally Owned - Serving El Paso & Las Cruces"}
+                ? "Con licencia, asegurados y locales - Sirviendo El Paso"
+                : "Licensed, Insured & Locally Owned - Serving El Paso"}
             </p>
             
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">

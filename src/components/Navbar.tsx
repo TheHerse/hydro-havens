@@ -169,7 +169,7 @@ export default function Navbar() {
             </a>
             
             <p className="text-center text-xs text-white/45">
-              {isSpanish ? "Sirviendo El Paso y Las Cruces" : "Serving El Paso & Las Cruces"}
+              {isSpanish ? "Sirviendo El Paso" : "Serving El Paso"}
             </p>
             <Link
               href={otherLanguagePath}

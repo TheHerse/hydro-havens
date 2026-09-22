@@ -32,7 +32,7 @@ export default function SpanishTermsPage() {
             <h2 className="text-2xl font-bold text-slate-900 mb-4">2. Descripción de Servicios</h2>
             <p>
               Hydro Havens Pools and Spas ofrece construcción de albercas personalizadas, instalación de spas,
-              instalación de turf, concreto estampado y diseño de espacios exteriores en el área de El Paso y Las Cruces.
+              instalación de turf, concreto estampado y diseño de espacios exteriores en el área de El Paso.
               Todos los servicios están sujetos a contratos y estimados por escrito por separado.
             </p>
           </section>

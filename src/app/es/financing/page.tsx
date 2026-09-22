@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Opciones de Financiamiento para Albercas",
   description:
-    "Explora opciones de financiamiento para albercas, spas y espacios exteriores en El Paso y Las Cruces con Hydro Havens.",
+    "Explora opciones de financiamiento para albercas, spas y espacios exteriores en El Paso con Hydro Havens.",
   path: "/es/financing/",
   image: "/images/financing/lyon-transparent.webp",
   locale: "es",
@@ -26,7 +26,7 @@ export default function SpanishFinancingPage() {
             <h2 className="text-sm font-medium text-teal-400 uppercase tracking-widest mb-4">Financiamiento</h2>
             <h1 className="text-5xl md:text-6xl font-bold text-white tracking-tight mb-6">Opciones de Financiamiento</h1>
             <p className="text-slate-400 text-xl max-w-2xl mx-auto">
-              Haz realidad tu alberca con opciones flexibles de financiamiento para proyectos en El Paso y Las Cruces.
+              Haz realidad tu alberca con opciones flexibles de financiamiento para proyectos en El Paso.
             </p>
           </div>
 

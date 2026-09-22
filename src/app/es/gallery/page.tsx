@@ -27,7 +27,7 @@ export default function SpanishGalleryPage() {
             <h2 className="text-sm font-medium text-teal-400 uppercase tracking-widest mb-4">Portafolio</h2>
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">Nuestro Trabajo</h1>
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              Explora proyectos de albercas, concreto, turf y espacios exteriores en el area de El Paso y Las Cruces.
+              Explora proyectos de albercas, concreto, turf y espacios exteriores en el area de El Paso.
             </p>
           </div>
 
@@ -57,7 +57,7 @@ export default function SpanishGalleryPage() {
 
           <div className="mt-20 text-center bg-gradient-to-r from-cyan-500/10 to-teal-500/10 rounded-3xl p-12 border border-cyan-500/20">
             <h2 className="text-3xl font-bold text-white mb-4">Listo para transformar tu patio?</h2>
-            <p className="text-slate-400 mb-8">Construyamos algo hermoso en El Paso o Las Cruces.</p>
+            <p className="text-slate-400 mb-8">Construyamos algo hermoso en El Paso.</p>
             <Link href="/es/contact/#contact-form" className="inline-block bg-teal-500 hover:bg-teal-400 text-slate-950 px-8 py-4 rounded-full font-bold transition-all hover:scale-105">
               Empezar Mi Proyecto
             </Link>

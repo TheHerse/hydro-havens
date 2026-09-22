@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "El Paso Custom Pool Builders | Hydro Havens Pools & Spas",
   description:
-    "Hydro Havens Pools & Spas builds custom pools, spas, patios, turf, stamped concrete, and outdoor living spaces across El Paso and Las Cruces. Get a free estimate.",
+    "Hydro Havens Pools & Spas builds custom pools, spas, patios, turf, stamped concrete, and outdoor living spaces across El Paso. Get a free estimate.",
   path: "/",
 });
 

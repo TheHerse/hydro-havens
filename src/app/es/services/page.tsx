@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Servicios de Albercas, Remodelacion y Espacios Exteriores",
   description:
-    "Albercas personalizadas, remodelacion de albercas, espacios exteriores, decks, concreto estampado y pasto sintetico en El Paso y Las Cruces.",
+    "Albercas personalizadas, remodelacion de albercas, espacios exteriores, decks, concreto estampado y pasto sintetico en El Paso.",
   path: "/es/services/",
   locale: "es",
 });
@@ -32,7 +32,7 @@ const services = [
   },
   {
     title: "Decks y Concreto",
-    description: "Decks para alberca y concreto resistente al clima de El Paso y Las Cruces.",
+    description: "Decks para alberca y concreto resistente al clima de El Paso.",
     icon: Grid3X3,
     gradient: "from-teal-500 to-cyan-500",
   },
@@ -65,7 +65,7 @@ export default function SpanishServicesPage() {
               Servicios de Albercas y Patios
             </h1>
             <p className="text-slate-400 text-xl max-w-2xl mx-auto">
-              Construimos albercas personalizadas y espacios exteriores completos para hogares en El Paso y Las Cruces.
+              Construimos albercas personalizadas y espacios exteriores completos para hogares en El Paso.
             </p>
           </div>
 

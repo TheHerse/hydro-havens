@@ -7,9 +7,9 @@ import { ArrowRight, CheckCircle, Phone } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Constructores de Albercas en El Paso y Las Cruces",
+  title: "Constructores de Albercas en El Paso",
   description:
-    "Hydro Havens diseña y construye albercas personalizadas, spas, patios, concreto estampado, pasto sintetico y espacios exteriores en El Paso y Las Cruces.",
+    "Hydro Havens diseña y construye albercas personalizadas, spas, patios, concreto estampado, pasto sintetico y espacios exteriores en El Paso.",
   path: "/es/",
   locale: "es",
 });
@@ -30,7 +30,7 @@ export default function SpanishHome() {
         <div className="max-w-5xl mx-auto border-l-4 border-[#159dac] pl-6">
           <h2 className="text-[11px] font-bold text-[#087f8c] uppercase tracking-[0.22em] mb-5">Albercas en El Paso</h2>
           <h3 className="font-display text-3xl md:text-5xl font-semibold tracking-[-0.04em] text-[#071923] mb-6">
-            Construccion de albercas y espacios exteriores para El Paso y Las Cruces
+            Construccion de albercas y espacios exteriores para El Paso
           </h3>
           <p className="text-[#47616a] text-lg leading-relaxed max-w-3xl">
             Ayudamos a familias a transformar su patio con albercas personalizadas, remodelaciones,

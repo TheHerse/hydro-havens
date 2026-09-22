@@ -32,7 +32,7 @@ export default function Hero({ locale = "en" }: { locale?: "en" | "es" }) {
         <div className="flex items-center gap-4 mb-7">
           <span className="h-[3px] w-10 bg-[#16a9b8]" />
           <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#2e6670]">
-            {isSpanish ? "Aceptando nuevos clientes en El Paso y Las Cruces" : "Accepting new clients in El Paso & Las Cruces"}
+            {isSpanish ? "Aceptando nuevos clientes en El Paso" : "Accepting new clients in El Paso"}
           </span>
         </div>
 
@@ -45,7 +45,7 @@ export default function Hero({ locale = "en" }: { locale?: "en" | "es" }) {
         
         <p className="text-[15px] lg:text-base text-[#375961] mb-9 max-w-[500px] leading-[1.75]">
           {isSpanish
-            ? "Diseñamos y construimos albercas personalizadas, remodelaciones y espacios exteriores para familias en El Paso, Las Cruces y areas cercanas."
+            ? "Diseñamos y construimos albercas personalizadas, remodelaciones y espacios exteriores para familias en el area de El Paso."
             : "Our team is dedicated to designing and constructing custom pools that combine beauty, functionality, and durability. Whether you're envisioning a serene oasis or an entertainment hotspot, we craft pools tailored to your unique style and needs."}
           <span className="block text-[#087f8c] mt-4 text-xs font-bold uppercase tracking-[0.14em]">
             {isSpanish ? "Con licencia, asegurados y localmente operados." : "Licensed, insured, and locally owned."}

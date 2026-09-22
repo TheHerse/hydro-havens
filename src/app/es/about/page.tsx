@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Sobre Hydro Havens Pools & Spas",
   description:
-    "Conoce a Hydro Havens Pools & Spas, contratista local de albercas que sirve El Paso y Las Cruces con construccion de albercas y espacios exteriores.",
+    "Conoce a Hydro Havens Pools & Spas, contratista local de albercas que sirve El Paso con construccion de albercas y espacios exteriores.",
   path: "/es/about/",
   locale: "es",
 });

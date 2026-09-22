@@ -13,7 +13,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Pool Construction, Remodeling & Outdoor Living Services",
   description:
-    "Custom pools, pool remodeling, outdoor living spaces, pool decking, stamped concrete, and artificial turf installation in El Paso and Las Cruces.",
+    "Custom pools, pool remodeling, outdoor living spaces, pool decking, stamped concrete, and artificial turf installation in El Paso.",
   path: "/services/",
 });
 

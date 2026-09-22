@@ -5,13 +5,13 @@ export const siteName = "Hydro Havens Pools & Spas";
 export const phoneNumber = "+19152627590";
 export const displayPhone = "(915) 262-7590";
 export const contactEmail = "marioluna301270@gmail.com";
-export const serviceAreas = ["El Paso, TX", "Las Cruces, NM", "Socorro, TX"];
+export const serviceAreas = ["El Paso, TX"];
 
 const defaultDescription =
   "El Paso pool builders specializing in custom pools, pool remodeling, stamped concrete, turf, and outdoor living spaces. Licensed and insured. Free estimates.";
 
 const defaultSpanishDescription =
-  "Constructores de albercas en El Paso y Las Cruces especializados en albercas personalizadas, remodelaciones, concreto estampado, pasto sintetico y espacios exteriores.";
+  "Constructores de albercas en El Paso especializados en albercas personalizadas, remodelaciones, concreto estampado, pasto sintetico y espacios exteriores.";
 
 export function absoluteUrl(path = "/") {
   return new URL(path, siteUrl).toString();

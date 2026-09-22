@@ -35,7 +35,7 @@ export default function TrustBadge() {
           {/* Service Area */}
           <div className="flex flex-col items-center justify-center py-7 border-t md:border-t-0 border-white/20">
             <div className="font-display text-4xl font-semibold text-white mb-2 tracking-tight">Local</div>
-            <div className="text-[10px] text-white/90 uppercase tracking-[0.2em]">El Paso & Las Cruces</div>
+            <div className="text-[10px] text-white/90 uppercase tracking-[0.2em]">El Paso</div>
           </div>
           
         </div>

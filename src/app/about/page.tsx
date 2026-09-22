@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "About Our El Paso Pool Company",
   description:
-    "Learn about Hydro Havens Pools & Spas, a locally owned pool contractor serving El Paso and Las Cruces with custom pool construction and outdoor living work.",
+    "Learn about Hydro Havens Pools & Spas, a locally owned pool contractor serving El Paso with custom pool construction and outdoor living work.",
   path: "/about/",
 });
 
