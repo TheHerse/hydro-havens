@@ -17,6 +17,8 @@ const contactConversionLabel = configuredValue(
   process.env.NEXT_PUBLIC_GOOGLE_ADS_CONTACT_CONVERSION_LABEL,
 );
 const metaPixelId = "1387603976492607";
+// Remember each phone link for this document's lifetime without retaining removed links.
+const trackedPhoneLinks = new WeakSet<Element>();
 
 function trackMetaEvent(eventName: "PageView" | "Contact" | "Lead", data?: Record<string, string>) {
   if (typeof window === "undefined" || !metaPixelId) return;
@@ -42,6 +44,7 @@ export function trackContactClick(contactMethod: "phone" | "email") {
 
   trackMetaEvent("Contact", {
     contact_method: contactMethod,
+    ...(contactMethod === "phone" ? { content_name: "phone_call_click" } : {}),
   });
 }
 
@@ -72,7 +75,8 @@ export default function Tracking() {
       const emailLink = target?.closest("a[href^='mailto:']");
       const estimateLink = target?.closest("a[href*='/contact/']");
 
-      if (phoneLink) {
+      if (phoneLink && !trackedPhoneLinks.has(phoneLink)) {
+        trackedPhoneLinks.add(phoneLink);
         trackContactClick("phone");
       }
 
