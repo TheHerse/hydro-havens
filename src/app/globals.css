@@ -226,7 +226,7 @@ body {
 .site-interior [class*="bg-slate-900"] h4 { color: #ffffff !important; }
 .site-interior [class*="bg-slate-900"] p,
 .site-interior [class*="bg-slate-900"] li,
-.site-interior [class*="bg-slate-900"] [class*="text-slate"] { color: rgba(255, 255, 255, .68) !important; }
+.site-interior [class*="bg-slate-900"] [class*="text-slate"]:not(input, textarea, select) { color: rgba(255, 255, 255, .68) !important; }
 .site-interior [class*="bg-slate-900"] svg { color: #55dfe2 !important; filter: drop-shadow(0 0 12px rgba(53, 200, 212, .22)); }
 .site-interior .grid > .group:hover,
 .site-interior .grid > div[class*="bg-slate-900"]:hover { background: #0d303c !important; border-color: rgba(85, 223, 226, .7) !important; }

@@ -113,25 +113,25 @@ export default function ContactPage() {
                   <div>
                     <label className="block text-slate-400 text-sm mb-2">Name</label>
                     <input type="text" name="name" placeholder="John Doe" required 
-                      className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-white placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors" />
+                      className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-slate-950 placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors" />
                   </div>
                   <div>
                     <label className="block text-slate-400 text-sm mb-2">Phone</label>
                     <input type="tel" name="phone" placeholder="(915) 555-0123" 
-                      className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-white placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors" />
+                      className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-slate-950 placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors" />
                   </div>
                 </div>
 
                 <div className="mb-6">
                   <label className="block text-slate-400 text-sm mb-2">Email</label>
                   <input type="email" name="email" placeholder="john@example.com" required 
-                    className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-white placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors" />
+                    className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-slate-950 placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors" />
                 </div>
 
                 <div className="mb-6">
                   <label className="block text-slate-400 text-sm mb-2">Service</label>
                   <select name="service" required 
-                    className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-white border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors appearance-none cursor-pointer">
+                    className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-slate-950 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors appearance-none cursor-pointer">
                     <option value="">Select a Service</option>
                     <option value="custom-pools">Custom Pools</option>
                     <option value="pool-remodeling">Pool Remodeling</option>
@@ -146,7 +146,7 @@ export default function ContactPage() {
                 <div className="mb-6">
                   <label className="block text-slate-400 text-sm mb-2">Message</label>
                   <textarea name="message" rows={5} placeholder="Tell us about your project..." 
-                    className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-white placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors resize-none" />
+                    className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-slate-950 placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors resize-none" />
                 </div>
 
                 <button type="submit" disabled={submitting} 

@@ -98,22 +98,22 @@ export default function SpanishContactPage() {
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <label className="block text-slate-400 text-sm mb-2">Nombre</label>
-                    <input type="text" name="name" placeholder="Nombre" required className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-white placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors" />
+                    <input type="text" name="name" placeholder="Nombre" required className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-slate-950 placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors" />
                   </div>
                   <div>
                     <label className="block text-slate-400 text-sm mb-2">Telefono</label>
-                    <input type="tel" name="phone" placeholder="(915) 555-0123" className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-white placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors" />
+                    <input type="tel" name="phone" placeholder="(915) 555-0123" className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-slate-950 placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors" />
                   </div>
                 </div>
 
                 <div className="mb-6">
                   <label className="block text-slate-400 text-sm mb-2">Email</label>
-                  <input type="email" name="email" placeholder="nombre@email.com" required className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-white placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors" />
+                  <input type="email" name="email" placeholder="nombre@email.com" required className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-slate-950 placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors" />
                 </div>
 
                 <div className="mb-6">
                   <label className="block text-slate-400 text-sm mb-2">Servicio</label>
-                  <select name="service" required className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-white border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors appearance-none cursor-pointer">
+                  <select name="service" required className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-slate-950 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors appearance-none cursor-pointer">
                     <option value="">Selecciona un servicio</option>
                     <option value="custom-pools">Albercas Personalizadas</option>
                     <option value="pool-remodeling">Remodelacion de Alberca</option>
@@ -127,7 +127,7 @@ export default function SpanishContactPage() {
 
                 <div className="mb-6">
                   <label className="block text-slate-400 text-sm mb-2">Mensaje</label>
-                  <textarea name="message" rows={5} placeholder="Cuentanos sobre tu proyecto..." className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-white placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors resize-none" />
+                  <textarea name="message" rows={5} placeholder="Cuentanos sobre tu proyecto..." className="w-full bg-slate-950/50 rounded-xl px-6 py-4 text-slate-950 placeholder:text-slate-600 border border-slate-800 focus:border-teal-500/50 focus:outline-none transition-colors resize-none" />
                 </div>
 
                 <button type="submit" disabled={submitting} className="w-full bg-teal-500 hover:bg-teal-400 disabled:opacity-50 disabled:cursor-not-allowed text-slate-950 font-bold py-4 rounded-xl transition-all hover:scale-[1.02] text-lg shadow-[0_0_20px_rgba(20,184,166,0.3)]">
