@@ -1,0 +1,65 @@
+.status-page { --status-navy: #061118; --status-panel: #09212c; --status-aqua: #35c8d4; --status-teal: #087f8c; min-height: 100svh; background: radial-gradient(ellipse at 12% 4%, rgba(43,143,169,.15), transparent 38%), radial-gradient(ellipse at 92% 94%, rgba(6,182,212,.11), transparent 42%), var(--status-navy); color: rgba(255,255,255,.94); font-family: "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.status-page * { box-sizing: border-box; }
+.status-shell { min-height: 100svh; width: 100%; padding: 36px 16px; display: grid; place-items: center; }
+.status-card { width: min(100%, 640px); border: 1px solid rgba(53,200,212,.2); border-radius: 24px; background: linear-gradient(145deg, rgba(9,33,44,.98), rgba(7,25,35,.98)); padding: clamp(22px, 6vw, 42px); box-shadow: 0 24px 80px rgba(0,0,0,.3), 0 0 45px rgba(6,182,212,.04); }
+.status-topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.status-brand-lockup { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.status-brand-lockup img { width: 38px; height: 38px; flex: 0 0 auto; border-radius: 50%; }
+.status-brand { font-size: 11px; font-weight: 750; letter-spacing: .2em; color: rgba(255,255,255,.9); }
+.status-badge, .phase-pill { border-radius: 999px; padding: 7px 11px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.status-badge.active { background: rgba(44,185,118,.15); color: #63dfa2; }
+.status-badge.completed { background: rgba(255,255,255,.1); color: #c3ceca; }
+.status-badge.on-hold { background: rgba(238,177,76,.15); color: #f3c56c; }
+.status-hero { min-height: 250px; position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: flex-end; margin-top: 30px; padding: clamp(20px, 4vw, 30px); border: 1px solid rgba(53,200,212,.26); border-radius: 16px; background: #09212c; }
+.status-hero-photo, .status-hero-shade { position: absolute; inset: 0; z-index: -1; }
+.status-hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center 55%; }
+.status-hero-shade { background: linear-gradient(90deg, rgba(6,17,24,.92) 0%, rgba(6,17,24,.72) 52%, rgba(6,17,24,.22) 100%), linear-gradient(0deg, rgba(6,17,24,.78), transparent 75%); }
+.status-hero-copy { position: relative; width: 100%; }
+.status-eyebrow { margin: 0 0 11px; color: #80e5e8; font-size: 10px; letter-spacing: .18em; font-weight: 700; }
+.status-card h1 { margin: 0; font-size: clamp(32px, 7vw, 46px); line-height: 1.02; letter-spacing: -.05em; font-weight: 650; text-wrap: balance; }
+.status-project-label { margin: 12px 0 0; font-size: 14px; color: rgba(255,255,255,.78); }
+.status-progress { margin-top: 36px; }
+.status-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.status-card h2 { margin: 0; font-size: 15px; font-weight: 650; letter-spacing: -.01em; }
+.status-section-heading strong { color: #40d6dc; text-shadow: 0 0 9px rgba(53,200,212,.62), 0 0 22px rgba(53,200,212,.3); font-size: 26px; font-variant-numeric: tabular-nums; }
+.status-track { height: 10px; margin-top: 14px; overflow: hidden; background: #143b47; border-radius: 99px; }
+.status-fill { height: 100%; position: relative; overflow: hidden; background: #35c8d4; border-radius: inherit; box-shadow: 0 0 5px rgba(53,200,212,.9), 0 0 14px rgba(53,200,212,.62), 0 0 27px rgba(53,200,212,.3); transition: width .35s ease; }
+.status-fill::before, .status-fill::after { content: ""; position: absolute; pointer-events: none; }
+.status-fill::before { inset: -5px -24px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 20'%3E%3Cpath d='M0 10 C10 1 30 1 40 10 S70 19 80 10 L80 20 L0 20 Z' fill='%23efffff' fill-opacity='.48'/%3E%3C/svg%3E") repeat-x; background-size: 80px 20px; animation: status-wave-slide 1.8s linear infinite; }
+.status-fill::after { top: -4px; bottom: -4px; left: -48%; width: 48%; background: linear-gradient(90deg, transparent, rgba(230,255,255,.48), transparent); transform: skewX(-20deg); animation: status-sheen 2.3s ease-in-out infinite; }
+.status-progress > p { margin: 10px 0 0; color: #78847e; font-size: 12px; }
+.status-timeline { margin-top: 36px; }
+.status-timeline ol { list-style: none; padding: 8px 0 0; margin: 0; }
+.status-timeline li { min-height: 44px; position: relative; display: grid; grid-template-columns: 30px minmax(0,1fr) auto; align-items: center; gap: 12px; color: #68736e; font-size: 13px; }
+.phase-number { position: relative; z-index: 1; width: 26px; height: 26px; display: grid; place-items: center; border: 1px solid #31505a; border-radius: 50%; color: #849da3; background: #09212c; font-size: 11px; font-variant-numeric: tabular-nums; }
+.status-timeline li:not(:last-child)::after { position: absolute; content: ""; left: 12px; top: 34px; bottom: -9px; border-left: 1px dotted #31505a; }
+.phase-completed .phase-number { border-color: #39b978; background: #153b2a; color: #73dfa5; }
+.phase-completed .phase-name { color: #c2cdc7; }
+.phase-in_progress .phase-number { border-color: #35c8d4; background: #0b3540; color: #80e5e8; }
+.phase-in_progress .phase-name { color: #fff; font-weight: 650; }
+.phase-in_progress .phase-number::after { position: absolute; inset: -4px; border: 1px solid rgba(53,200,212,.4); border-radius: 50%; content: ""; animation: phase-pulse 2s ease-out infinite; }
+.phase-pill.completed { color: #68d99b; background: rgba(57,185,120,.13); }
+.phase-pill.in_progress { color: #80e5e8; background: rgba(53,200,212,.14); }
+.status-update { margin-top: 30px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.1); }
+.status-update p { margin: 12px 0 9px; color: #d0d7d3; font-size: 14px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+.status-update time { color: #77837d; font-size: 12px; }
+.status-footer { margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.07); }
+.status-contact { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 9px 16px; color: #77837d; font-size: 12px; }
+.status-contact div { display: flex; flex-wrap: wrap; gap: 5px; }
+.status-contact a { color: #72dce2; text-decoration: none; }
+.status-contact a:hover { color: #6ee7e7; text-decoration: underline; }
+.status-message { text-align: center; }
+.status-message .status-brand-lockup { justify-content: center; }
+.status-message > p { margin: 26px auto; max-width: 440px; color: #d0d7d3; line-height: 1.7; }
+.status-message .status-contact { justify-content: center; }
+.status-skeleton { background: linear-gradient(90deg,#102e39,#174452,#102e39); background-size: 200% 100%; border-radius: 8px; animation: skeleton-shimmer 1.4s linear infinite; }
+.status-skeleton-heading { width: 72%; height: 34px; margin: 42px 0 20px; }
+.status-skeleton-line { width: 92%; height: 12px; margin: 14px 0; }
+.status-skeleton-line.short { width: 55%; }
+.status-skeleton-block { height: 180px; margin-top: 36px; }
+@keyframes skeleton-shimmer { to { background-position: -200% 0; } }
+@keyframes phase-pulse { 0% { transform: scale(.85); opacity: .7; } 100% { transform: scale(1.45); opacity: 0; } }
+@keyframes status-wave-slide { from { background-position-x: 0; } to { background-position-x: -80px; } }
+@keyframes status-sheen { 0% { left: -48%; } 100% { left: 110%; } }
+@media (max-width: 420px) { .status-shell { padding: 14px 10px; } .status-card { border-radius: 18px; padding: 22px 18px; } .status-hero { min-height: 220px; margin-top: 24px; padding: 18px; } .status-timeline li { grid-template-columns: 28px minmax(0,1fr) auto; gap: 8px; font-size: 12px; } .phase-pill { padding: 6px 8px; font-size: 10px; } }
+@media (prefers-reduced-motion: reduce) { .status-page *, .status-page *::before, .status-page *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }

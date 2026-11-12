@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import Navigation from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Tracking from "@/components/Tracking";
+import SiteChrome from "@/components/SiteChrome";
 import { absoluteUrl, contactEmail, phoneNumber, serviceAreas, siteName, siteUrl } from "@/lib/seo";
 
 const businessSchema = {
@@ -160,10 +158,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <input name="bot-field" />
         </form>
         
-        <Navigation />
-        <main id="main-content">{children}</main>
-        <Tracking />
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
