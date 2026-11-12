@@ -135,7 +135,11 @@ export default function StatusDashboard() {
 
   const percent = Math.min(100, Math.max(0, Math.round(Number(project.overall_percent) || 0)));
   const badgeClass = project.status_badge === "Completed" ? "completed" : project.status_badge === "On Hold" ? "on-hold" : "active";
-  const phases = PHASE_NAMES.map((name, index) => project.phases.find((phase) => phase.name === name) ?? { n: index + 1, name, status: "upcoming" as const });
+  const isComplete = project.status_badge === "Completed" || percent === 100;
+  const phases = PHASE_NAMES.map((name, index) => {
+    const phase = project.phases.find((item) => item.name === name) ?? { n: index + 1, name, status: "upcoming" as const };
+    return isComplete ? { ...phase, status: "completed" as const } : phase;
+  });
   const currentPhase = phases.find((phase) => phase.status === "in_progress")?.name;
   const heroImage = project.photo_data_url || "/images/pools/pool-hero.webp";
 

@@ -27,6 +27,11 @@ function doGet(e) {
     const row = sheet.getRange(matches.getRow(), 1, 1, 7).getDisplayValues()[0];
     if (!row[0] || row[0].trim() !== token) return json_(generic);
     const current = PHASES.findIndex((phase) => phase.toLowerCase() === String(row[3] || "").trim().toLowerCase());
+    const parsedPercent = Number(String(row[4] || "").replace(/[^0-9.+-]/g, ""));
+    const percent = Number.isFinite(parsedPercent) ? Math.min(100, Math.max(0, Math.round(parsedPercent))) : 0;
+    const badges = ["Active Project", "On Hold", "Completed"];
+    const badge = badges.find((value) => value.toLowerCase() === String(row[2] || "").trim().toLowerCase()) || "Active Project";
+    const isComplete = badge === "Completed" || percent === 100;
     let photoDataUrl = "";
     const includePhoto = String(e.parameter.include_photo || "") === "1";
     if (includePhoto && current >= 0) {
@@ -42,12 +47,8 @@ function doGet(e) {
     const phases = PHASES.map((name, index) => ({
       n: index + 1,
       name,
-      status: current < 0 ? "upcoming" : index < current ? "completed" : index === current ? "in_progress" : "upcoming",
+      status: isComplete ? "completed" : current < 0 ? "upcoming" : index < current ? "completed" : index === current ? "in_progress" : "upcoming",
     }));
-    const parsedPercent = Number(String(row[4] || "").replace(/[^0-9.+-]/g, ""));
-    const percent = Number.isFinite(parsedPercent) ? Math.min(100, Math.max(0, Math.round(parsedPercent))) : 0;
-    const badges = ["Active Project", "On Hold", "Completed"];
-    const badge = badges.find((value) => value.toLowerCase() === String(row[2] || "").trim().toLowerCase()) || "Active Project";
 
     return json_({ ok: true, project: {
       label: String(row[1] || "").trim(),
